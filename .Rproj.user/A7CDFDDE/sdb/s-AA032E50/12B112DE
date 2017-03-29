@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "\nlibrary(V8)\n\nctx <- v8()\n\nctx$source(\"/home/lampros/Downloads/turf.min.js\")\n\nctx$get(\"Object.keys(window)\")\n\n\nurl <- \"https://raw.githubusercontent.com/glynnbird/usstatesgeojson/master/california.geojson\"\ngeojson <- jsonlite::fromJSON(url)\n",
+    "created" : 1487864793618.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "1213607642",
+    "id" : "12B112DE",
+    "lastKnownWriteTime" : 7669460184284157256,
+    "last_content_update" : 1487864799619,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled1"
+    },
+    "relative_order" : 1,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

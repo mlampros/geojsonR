@@ -1,0 +1,9 @@
+importFrom(Rcpp, evalCpp)
+useDynLib(geojsonR, .registration = TRUE)
+
+export(Dump_From_GeoJson)
+export(FROM_GeoJson)
+export(Features_2Collection)
+export(TO_GeoJson)
+export(shiny_from_JSON)
+importFrom(R6,R6Class)

@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\n# server.R\n\n\nfunction(input, output, session){\n\n  outVar = reactive({\n\n    QUERY = address_geocoding_nominatim(streetname = input$streetname, housenumber = input$housenumber, city = input$city,\n\n                                        county = input$county, state = input$state, country = input$country, postalcode = input$postalcode)\n  })\n\n  observe({\n\n    if (length(outVar()$display_name) == 0) {\n\n      updateSelectInput(session, \"results_subset\", choices = \"unknown location\")}\n\n    else {\n\n      updateSelectInput(session, \"results_subset\", choices = outVar()$display_name)\n\n      output$map <- leaflet::renderLeaflet({\n\n        INFO = paste(c(paste(\"<strong>\", \"ADDRESS :\", \"</strong>\"), input$results_subset, \"<br>\", paste(\"<strong>\", \"LONGITUDE :\", \"</strong>\"),\n\n                       as.numeric(outVar()[which(outVar()$display_name == input$results_subset), 'lon']), \"<br>\", paste(\"<strong>\", \"LATITUDE :\", \"</strong>\"),\n\n                       as.numeric(outVar()[which(outVar()$display_name == input$results_subset), 'lat'])), collapse = \" \")\n\n        if (input$map_provider == \"OpenStreetMap\") {\n\n          tmp <- leaflet::leaflet()\n\n          tmp <- leaflet::addTiles(tmp)\n\n          tmp <- leaflet::addPopups(tmp, lng = as.numeric(outVar()[which(outVar()$display_name == input$results_subset), 'lon']),\n\n                                    lat = as.numeric(outVar()[which(outVar()$display_name == input$results_subset), 'lat']),\n\n                                    INFO, options = leaflet::popupOptions(closeButton = T))}\n\n        else {\n\n          GLOB_MAP_PROV = paste0(\"leaflet::providers$\", input$map_provider)\n\n          tmp <- leaflet::leaflet()\n\n          tmp <- leaflet::addProviderTiles(tmp, eval(parse(text = GLOB_MAP_PROV)) )\n\n          tmp <- leaflet::addPopups(tmp, lng = as.numeric(outVar()[which(outVar()$display_name == input$results_subset), 'lon']),\n\n                                    lat = as.numeric(outVar()[which(outVar()$display_name == input$results_subset), 'lat']),\n\n                                    input$results_subset, options = leaflet::popupOptions(closeButton = T))\n\n          #--------------------------------------------------------------\n          # magritrr's pipe %>% causes an error when building the package\n          #--------------------------------------------------------------\n        }\n      })\n    }\n  })\n}\n",
+    "created" : 1490725488264.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3262474657",
+    "id" : "8F058777",
+    "lastKnownWriteTime" : 1489596363,
+    "last_content_update" : 1489596363,
+    "path" : "~/Desktop/kaggle_gpu/add_GITHUB/ShinyGeocoding/inst/shiny_geocoding/server.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 17,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

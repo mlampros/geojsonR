@@ -1,0 +1,21 @@
+
+{ "type": "Feature",
+
+  "id": 1,
+
+  "bbox": [-10.02, -10.02, 10.02, 10.02],
+
+  "geometry": {
+
+  "type": "Point",
+
+  "coordinates": [61.210817, 35.650072]
+  },
+
+  "properties": {
+
+    "location": "some location",
+
+    "details": "include details about location"
+  }
+}

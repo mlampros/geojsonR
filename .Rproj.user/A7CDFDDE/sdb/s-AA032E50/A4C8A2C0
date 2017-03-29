@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "\nlibrary(shiny); library(leaflet)\n\n\nfluidPage(\n\n  titlePanel(\"Geocoding using a geojson file/script, Shiny and Leaflet\"),\n\n  textInput(inputId = \"location\", label = \"Data Input\", value = 'https://raw.githubusercontent.com/mlampros/DataSets/master/california.geojson', width = '100%'),       # '{ \"type\": \"Point\", \"coordinates\": [-120.248484, 33.999329] }'\n\n  textInput(inputId = \"map_provider\", label = \"map_provider\", value = \"OpenStreetMap\", width = '40%'),                                       # test map_provider using : 'CartoDB.Positron'\n\n  leaflet::leafletOutput(outputId = \"map\", width = \"100%\", height = 900)\n)\n",
+    "created" : 1490792106884.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "4108272224",
+    "id" : "A4C8A2C0",
+    "lastKnownWriteTime" : 1490792255,
+    "last_content_update" : 1490792255,
+    "path" : "~/Downloads/SHINY_SERVER/shiny_geojson/ui.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 18,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

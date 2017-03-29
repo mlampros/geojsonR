@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "{\n \"type\": \"Feature\",\n\n \"id\": 1,\n\n \"bbox\": [-10.0, -10.0, 10.0, 10.0],\n\n \"geometry\": {\n\n    \"type\": \"Polygon\",\n\n    \"coordinates\": [\n\n         [\n            [-10.0, -10.0], [10.0, -10.0], [10.0, 10.0], [-10.0, -10.0]\n         ]\n      ]\n    },\n\n    \"properties\": {\n\n      \"prop_1\": \"addr1\",\n\n      \"prop_2\": 1\n    }\n}\n",
+    "created" : 1490724902444.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1968583982",
+    "id" : "4AE13138",
+    "lastKnownWriteTime" : 1490724947,
+    "last_content_update" : 1490724947259,
+    "path" : "~/Downloads/Feature1.geojson",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled3"
+    },
+    "relative_order" : 14,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "text"
+}

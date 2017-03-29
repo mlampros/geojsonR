@@ -1,0 +1,27 @@
+Package: geojsonR
+Type: Package
+Title: A GeoJson Processing Toolkit
+Version: 1.0.1
+Date: 2017-03-30
+Author: Lampros Mouselimis <mouselimislampros@gmail.com>
+Maintainer: Lampros Mouselimis <mouselimislampros@gmail.com>
+BugReports: https://github.com/mlampros/geojsonR/issues
+URL: https://github.com/mlampros/geojsonR
+Description: Includes functions for processing GeoJson objects <https://en.wikipedia.org/wiki/GeoJSON> relying on 'RFC 7946' <https://tools.ietf.org/pdf/rfc7946.pdf>. The geojson encoding is based on 'json11', a tiny JSON library for 'C++11' <https://github.com/dropbox/json11>. Furthermore, the source code is exported in R through the 'Rcpp' and 'RcppArmadillo' packages.
+License: MIT + file LICENSE
+Copyright: inst/COPYRIGHTS
+SystemRequirements: The package requires a C++11 compiler.
+LazyData: true
+Depends:
+    R(>= 3.2.3)
+Imports:
+    Rcpp (>= 0.12.9),
+    R6
+LinkingTo: Rcpp, RcppArmadillo (>= 0.7.6)
+Suggests:
+    testthat,
+    covr,
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+RoxygenNote: 5.0.1

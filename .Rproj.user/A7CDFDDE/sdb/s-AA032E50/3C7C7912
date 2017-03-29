@@ -1,0 +1,22 @@
+{
+    "collab_server" : "",
+    "contents" : "#################################################################################################\n\n\n# run application from Github shiny-server\n\nshiny::runGitHub('shiny-server', 'mlampros', subdir = 'geocoding_geojson')\nshiny::runGitHub('shiny-server', 'mlampros', subdir = 'geocoding_nominatim')\nshiny::runGitHub('shiny-server', 'mlampros', subdir = 'geocoding_nominatim_reverse')\n\n# URL's of applications:\n# \n# https://lampros.shinyapps.io/shiny_geocoding/\n# https://lampros.shinyapps.io/shiny_geojson/\n# https://lampros.shinyapps.io/shiny_reverse_geocoding/\n\n#################################################################################################\n\nggmap::geocode(paste('Washington', 'DC'))\nggmap::geocode(paste('paramythia', 'Greece'))\n\n\n\nlibrary(mongolite)         # in mongolite I can insert either a named list, data.frame or vector [ SEE Documentation : https://jeroenooms.github.io/mongolite/]\n\ninit5 = mongo(\"Geo_pnts\")\n\njson_files = list.files('/home/lampros/Downloads/GEOJSON/geo_points', full.names = T)\n\n\nfor (i in 1:length(json_files)) {\n\n  init5$insert(geojsonR::read_GeoJson(json_files[i]))          # add the geojson-files to the database\n}\n\n\nalldata = init5$find('{}')\n\nstr(alldata)\n\n\nsubs1 = init5$find(query =\n  '{\n    \"location\":\n    { \"$geoIntersects\" :\n    {\n      \"$geometry\": { \"type\": \"Point\",  \"coordinates\": [ 100, 0.0 ] }\n    }\n    }\n  }'\n)\n\n\n############################################################################################################################\n\npollen_data <- read.csv(\"/home/lampros/Downloads/all_pollen_final.csv\", stringsAsFactors = FALSE)\n\n# Everything gets loaded as a character string.\nstr(pollen_data)\n\n\nlibrary(dplyr)\n\n# Get all taxa with proportions greater than 5%:\ngood_taxa <- pollen_data %>% \n  group_by(Taxon) %>% \n  summarise(max = max(Pct)) %>% \n  filter(max > 5) %>% \n  select(Taxon) %>% unlist\n\n# Now subset the data and remove extraneous columns:\npollen_subset <- dplyr::filter(pollen_data, \n                               !AgeType %in% \"Radiocarbon years BP\" & Taxon %in% good_taxa) %>% \n  select(SiteName, Latitude, Longitude, Age, Taxon, Pct) %>% \n  mutate_each(funs(as.numeric), Latitude, Longitude, Age, Pct) %>% na.omit\n\n\nlibrary(leaflet)\nlibrary(shiny)\n\nshinyApp(\n  ui = fluidPage(\n    sliderInput(inputId = \"time\",\n                label = \"Years Before Present:\",\n                min = -50, max = 15000, value = 0, step = 500),\n    tags$div(title = \"This input has a tool tip\",\n             selectInput(inputId = \"taxon\", \n                         label = \"Taxon of Interest\", \n                         choices = sort(unique(pollen_subset$Taxon)))),\n    leafletOutput(\"MapPlot1\")\n  ),\n  \n  server = function(input, output) {\n    \n    output$MapPlot1 <- renderLeaflet({\n      leaflet() %>% \n        addProviderTiles(\"Stamen.Watercolor\") %>% \n        setView(lng = -100, lat = 50, zoom = 2)\n    })\n    \n    observe({\n      \n      age <- input$time\n      taxon <- input$taxon\n      \n      sites <- pollen_subset %>% \n        filter(findInterval(pollen_subset$Age, c(age - 250, age + 250)) == 1 &\n                 pollen_subset$Taxon %in% taxon)\n      \n      leafletProxy(\"MapPlot1\") %>% clearMarkers() %>% \n        addCircleMarkers(lng = sites$Longitude,\n                         lat = sites$Latitude,\n                         opacity = sites$Pct)\n    })\n  },\n  options = list(height = 600)\n)\n\n\n#################################################################\n\n\nFUNC = function() {\n  \n  QUERY = \"http://citibikenyc.com/stations/json\"\n  \n  con = url(QUERY, method = \"libcurl\")\n  \n  tmp_json = suppressWarnings(readLines(con))\n  \n  rm(con); gc()\n  \n  return(tmp_json)\n}\n\n\n#################################################################\n",
+    "created" : 1488784762903.000,
+    "dirty" : true,
+    "encoding" : "",
+    "folds" : "",
+    "hash" : "3643776072",
+    "id" : "3C7C7912",
+    "lastKnownWriteTime" : 70397952,
+    "last_content_update" : 1490797548333,
+    "path" : null,
+    "project_path" : null,
+    "properties" : {
+        "source_window_id" : "",
+        "tempName" : "Untitled2"
+    },
+    "relative_order" : 7,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}

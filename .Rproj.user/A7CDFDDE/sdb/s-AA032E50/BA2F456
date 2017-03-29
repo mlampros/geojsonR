@@ -1,0 +1,21 @@
+{
+    "collab_server" : "",
+    "contents" : "{\n    \"type\": \"FeatureCollection\",\n    \"features\": [{\n\n        \"type\": \"Feature\",\n         \"geometry\": {\n             \"type\": \"Point\",\n             \"coordinates\":\n                [102.0, 0.5]\n         },\n         \"properties\": {\n         \"prop0\": \"value0\"\n         }\n        }, {\n\n           \"type\": \"Feature\",\n           \"geometry\": {\n               \"type\": \"LineString\",\n               \"coordinates\": [\n                 [102.0, 0.0],\n                 [103.0, 1.0],\n                 [104.0, 0.0],\n                 [105.0, 1.0]\n                 ]\n               },\n               \"properties\": {\n                \"prop0\": \"value0\",\n               \"prop1\": 0.0\n               }\n        }\n    ]\n}\n",
+    "created" : 1490715751850.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "1511290558",
+    "id" : "BA2F456",
+    "lastKnownWriteTime" : 1490715776,
+    "last_content_update" : 1490715776857,
+    "path" : "~/Downloads/feature_collection.geojson",
+    "project_path" : null,
+    "properties" : {
+        "tempName" : "Untitled3"
+    },
+    "relative_order" : 13,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "text"
+}
