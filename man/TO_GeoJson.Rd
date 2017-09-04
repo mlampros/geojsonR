@@ -64,6 +64,7 @@ converts data to a GeoJson object
  \item{\code{--------------}}{}
  }
 }
+
 \examples{
 
 library(geojsonR)
@@ -227,4 +228,3 @@ cat(feature_collection_obj$json_dump)
 
 }
 \keyword{datasets}
-

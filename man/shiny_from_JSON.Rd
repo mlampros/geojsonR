@@ -18,4 +18,3 @@ secondary function for shiny Applications
 \details{
 This function is meant for \emph{shiny Applications}. To read a GeoJson file use the \emph{FROM_GeoJson} function.
 }
-

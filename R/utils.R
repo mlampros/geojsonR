@@ -3,12 +3,13 @@
 #' reads GeoJson data
 #'
 #' @param url_file_string a string specifying the input path to a file OR a geojson object (in form of a character string) OR a valid url (beginning with 'http..') pointing to a geojson object
-#' @param ... See details for the \emph{ellipsis} (...).
+#' @param Flatten_Coords either TRUE or FALSE. If TRUE then the properties member of the geojson file will be omitted during parsing.
+#' @param Average_Coordinates either TRUE or FALSE. If TRUE then additionally a geojson-dump and the average latitude and longitude of the geometry object will be returned.
+#' @param To_List either TRUE or FALSE. If TRUE then the \emph{coordinates} of the geometry object will be returned in form of a list, otherwise in form of a numeric matrix.
 #' @return a (nested) list
 #' @details
-#' The \emph{FROM_GeoJson} function can take two more parameters : \emph{flatten_coords} and \emph{average_coordinates}. Both parameters are boolean.
-#' If \emph{flatten_coords} is TRUE then the properties member of the geojson file will be omitted. If \emph{average_coordinates} is TRUE then additionally a geojson-dump and the average
-#' latitude and longitude of the geometry object will be returned.
+#' The \emph{FROM_GeoJson} function is based on the 'RFC 7946' specification. Thus, geojson files/strings which include property-names other than the 'RFC 7946' specifies will return an error. To avoid errors of
+#' that kind a user should take advantage of the \emph{FROM_GeoJson_Schema} function, which is not as strict concerning the property names.
 #' @export
 #' @examples
 #'
@@ -41,12 +42,12 @@
 #' # res = FROM_GeoJson(url_file_string = "http://www.EXAMPLE_web_page.geojson")
 #'
 
-FROM_GeoJson = function(url_file_string, ...) {
+FROM_GeoJson = function(url_file_string, Flatten_Coords = FALSE, Average_Coordinates = FALSE, To_List = FALSE) {
 
-  if (!inherits(url_file_string, 'character') && length(url_file_string) != 1) {
-
-    stop("the 'url_file_string' parameter should be of type character string", call. = F)
-  }
+  if (!inherits(url_file_string, 'character') && length(url_file_string) != 1) { stop("the 'url_file_string' parameter should be of type character string", call. = F) }
+  if (!inherits(Flatten_Coords, "logical")) { stop("the 'Flatten_Coords' parameter should be of type boolean", call. = F) }
+  if (!inherits(Average_Coordinates, "logical")) { stop("the 'Average_Coordinates' parameter should be of type boolean", call. = F) }
+  if (!inherits(To_List, "logical")) { stop("the 'To_List' parameter should be of type boolean", call. = F) }
 
   if (substring(url_file_string, 1, 4) == "http") {       # only url-addresses which start with 'http' will be considered as valid
 
@@ -59,7 +60,63 @@ FROM_GeoJson = function(url_file_string, ...) {
     rm(con); gc()
   }
 
-  res = export_From_geojson(url_file_string, ...)
+  res = export_From_geojson(url_file_string, Flatten_Coords, Average_Coordinates, To_List)
+
+  return(res)
+}
+
+
+
+#' reads GeoJson data using a one-word-schema
+#'
+#' @param url_file_string a string specifying the input path to a file OR a geojson object (in form of a character string) OR a valid url (beginning with 'http..') pointing to a geojson object
+#' @param geometry_name a string specifying the geometry name in the geojson string/file. The \emph{geometry_name} functions as a one-word schema and can significantly speed up the parsing of the data.
+#' @param Average_Coordinates either TRUE or FALSE. If TRUE then additionally a geojson-dump and the average latitude and longitude of the geometry object will be returned.
+#' @param To_List either TRUE or FALSE. If TRUE then the \emph{coordinates} of the geometry object will be returned in form of a list, otherwise in form of a numeric matrix.
+#' @return a (nested) list
+#' @details
+#' This function is appropriate when the property-names do not match exactly the 'RFC 7946' specification ( for instance if the \emph{geometry} object-name appears as \emph{location} as is the case sometimes in mongodb queries ).
+#' The user can then specify the \emph{geometry_name} as it exactly appears in the .geojson string/file (consult the example for more details). If no \emph{geometry_name} is given then recursion will be used, which increases the processing time.
+#' In case that the input .geojson object is of \emph{type} : \emph{Point}, \emph{LineString}, \emph{MultiPoint}, \emph{Polygon}, \emph{GeometryCollection}, \emph{MultiLineString}, \emph{MultiPolygon},
+#'  \emph{Feature} or \emph{FeatureCollection} with a second attribute name : \emph{coordinates}, then the \emph{geometry_name} parameter is not necessary.
+#' @export
+#' @examples
+#'
+#' library(geojsonR)
+#'
+#'
+#' # INPUT IS A GEOJSON (character string)
+#'
+#' tmp_str = '{
+#'             "name" : "example_name",
+#'             "location" : {
+#'                 "type" : "Point",
+#'                 "coordinates" : [ -120.24, 39.21 ]
+#'               }
+#'            }'
+#'
+#' res = FROM_GeoJson_Schema(url_file_string = tmp_str, geometry_name = "location")
+#'
+
+FROM_GeoJson_Schema = function(url_file_string, geometry_name = "", Average_Coordinates = FALSE, To_List = FALSE) {
+
+  if (!inherits(url_file_string, 'character') && length(url_file_string) != 1) { stop("the 'url_file_string' parameter should be of type character string", call. = F) }
+  if (!inherits(geometry_name, "character")) { stop("the 'geometry_name' parameter should be of type character", call. = F) }
+  if (!inherits(Average_Coordinates, "logical")) { stop("the 'Average_Coordinates' parameter should be of type boolean", call. = F) }
+  if (!inherits(To_List, "logical")) { stop("the 'To_List' parameter should be of type boolean", call. = F) }
+
+  if (substring(url_file_string, 1, 4) == "http") {       # only url-addresses which start with 'http' will be considered as valid
+
+    con = url(url_file_string, method = "libcurl")        # test url-output with : 'https://raw.githubusercontent.com/lyzidiamond/learn-geojson/master/geojson/cupcakes.geojson'
+
+    url_json = readLines(con, warn = FALSE)
+
+    url_file_string = paste(url_json, collapse = "\n")
+
+    rm(con); gc()
+  }
+
+  res = export_From_geojson_schema(url_file_string, geometry_name, Average_Coordinates, To_List)
 
   return(res)
 }
@@ -514,4 +571,42 @@ shiny_from_JSON = function(input_file) {              # shiny apps should be in 
   return(export_From_JSON(input_file))
 }
 
+
+
+
+#' merge json files (or any kind of text files) from a directory
+#'
+#' @param INPUT_FOLDER a character string specifying a path to the input folder
+#' @param OUTPUT_FILE a character string specifying a path to the output file
+#' @param CONCAT_DELIMITER a character string specifying the delimiter to use when merging the files
+#' @param verbose either TRUE or FALSE. If TRUE then information will be printed in the console.
+#' @details
+#' This function is meant for json files but it can be applied to any kind of text files. It takes an input folder (\emph{INPUT_FOLDER}) and an output file
+#' (\emph{OUTPUT_FILE}) and merges all files from the \emph{INPUT_FOLDER} to a single \emph{OUTPUT_FILE} using the concatenation delimiter (\emph{CONCAT_DELIMITER}).
+#' @export
+#' @examples
+#'
+#' \dontrun{
+#' library(geojsonR)
+#'
+#' merge_files(INPUT_FOLDER = "/my_folder/", OUTPUT_FILE = "output_file.json")
+#' }
+
+merge_files = function(INPUT_FOLDER, OUTPUT_FILE, CONCAT_DELIMITER = "\n", verbose = FALSE) {
+
+  if (!inherits(INPUT_FOLDER, 'character') && length(INPUT_FOLDER) != 1) stop("the 'INPUT_FOLDER' parameter should be a character string", call. = F)
+  if (!inherits(OUTPUT_FILE, 'character') && length(OUTPUT_FILE) != 1) stop("the 'OUTPUT_FILE' parameter should be a character string", call. = F)
+  if (!inherits(CONCAT_DELIMITER, 'character') && length(CONCAT_DELIMITER) != 1) stop("the 'CONCAT_DELIMITER' parameter should be a character string", call. = F)
+  if (!inherits(verbose, 'logical')) stop("the 'verbose' parameter should be of type boolean", call. = F)
+
+  str_SPL = strsplit(INPUT_FOLDER, "")[[1]]
+  if (!str_SPL[nchar(INPUT_FOLDER)] %in% c("/", "\\")) stop('the "INPUT_FOLDER" parameter should end in slash', call. = F)
+
+  if (file.exists(OUTPUT_FILE)) warning(paste("the '", OUTPUT_FILE, "' file already exists. New data will be added to the end of '", OUTPUT_FILE, "' !", sep = ""), call. = F)
+  if (!dir.exists(INPUT_FOLDER)) stop("the path to the 'INPUT_FOLDER' parameter does not exist", call. = F)
+
+  merge_json(INPUT_FOLDER, OUTPUT_FILE, CONCAT_DELIMITER, verbose)
+
+  invisible()
+}
 

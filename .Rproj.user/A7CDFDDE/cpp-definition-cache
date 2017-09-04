@@ -5,7 +5,7 @@
                 "column" : 7,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
                 "kind" : 2,
-                "line" : 91,
+                "line" : 46,
                 "name" : "From_GeoJson_geometries",
                 "parent_name" : "",
                 "usr" : "c:@C@From_GeoJson_geometries"
@@ -14,16 +14,16 @@
                 "column" : 14,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
                 "kind" : 7,
-                "line" : 106,
-                "name" : "geom_OBJ(std::string, json11::Json, int, bool)",
+                "line" : 61,
+                "name" : "geom_OBJ(std::string, json11::Json, int, bool, bool)",
                 "parent_name" : "From_GeoJson_geometries",
-                "usr" : "c:@C@From_GeoJson_geometries@F@geom_OBJ#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#$@N@json11@C@Json#I#b#"
+                "usr" : "c:@C@From_GeoJson_geometries@F@geom_OBJ#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#$@N@json11@C@Json#I#b#b#"
             },
             {
                 "column" : 16,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
                 "kind" : 7,
-                "line" : 345,
+                "line" : 401,
                 "name" : "return_COORDS",
                 "parent_name" : "From_GeoJson_geometries",
                 "usr" : "c:@C@From_GeoJson_geometries@F@return_COORDS#"
@@ -32,16 +32,16 @@
                 "column" : 14,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
                 "kind" : 7,
-                "line" : 354,
-                "name" : "geom_collection_OBJ(json11::Json, bool)",
+                "line" : 410,
+                "name" : "geom_collection_OBJ(json11::Json, bool, bool)",
                 "parent_name" : "From_GeoJson_geometries",
-                "usr" : "c:@C@From_GeoJson_geometries@F@geom_collection_OBJ#$@N@json11@C@Json#b#"
+                "usr" : "c:@C@From_GeoJson_geometries@F@geom_collection_OBJ#$@N@json11@C@Json#b#b#"
             },
             {
                 "column" : 8,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
                 "kind" : 7,
-                "line" : 425,
+                "line" : 476,
                 "name" : "recursive_switch(json11::Json)",
                 "parent_name" : "From_GeoJson_geometries",
                 "usr" : "c:@C@From_GeoJson_geometries@F@recursive_switch#$@N@json11@C@Json#"
@@ -50,25 +50,43 @@
                 "column" : 14,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
                 "kind" : 7,
-                "line" : 479,
-                "name" : "feature_OBJ(json11::Json, bool, bool)",
+                "line" : 530,
+                "name" : "feature_OBJ(json11::Json, bool, bool, bool)",
                 "parent_name" : "From_GeoJson_geometries",
-                "usr" : "c:@C@From_GeoJson_geometries@F@feature_OBJ#$@N@json11@C@Json#b#b#"
+                "usr" : "c:@C@From_GeoJson_geometries@F@feature_OBJ#$@N@json11@C@Json#b#b#b#"
             },
             {
                 "column" : 14,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
                 "kind" : 7,
-                "line" : 567,
-                "name" : "feature_collection_geojson(json11::Json, bool, bool)",
+                "line" : 617,
+                "name" : "feature_OBJ_schema(json11::Json, bool, bool)",
                 "parent_name" : "From_GeoJson_geometries",
-                "usr" : "c:@C@From_GeoJson_geometries@F@feature_collection_geojson#$@N@json11@C@Json#b#b#"
+                "usr" : "c:@C@From_GeoJson_geometries@F@feature_OBJ_schema#$@N@json11@C@Json#b#b#"
+            },
+            {
+                "column" : 14,
+                "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
+                "kind" : 7,
+                "line" : 660,
+                "name" : "feature_collection_geojson(json11::Json, bool, bool, bool)",
+                "parent_name" : "From_GeoJson_geometries",
+                "usr" : "c:@C@From_GeoJson_geometries@F@feature_collection_geojson#$@N@json11@C@Json#b#b#b#"
+            },
+            {
+                "column" : 14,
+                "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
+                "kind" : 7,
+                "line" : 728,
+                "name" : "feature_collection_geojson_schema(json11::Json, bool, bool)",
+                "parent_name" : "From_GeoJson_geometries",
+                "usr" : "c:@C@From_GeoJson_geometries@F@feature_collection_geojson_schema#$@N@json11@C@Json#b#b#"
             },
             {
                 "column" : 8,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
                 "kind" : 7,
-                "line" : 635,
+                "line" : 785,
                 "name" : "file_exists(std::string)",
                 "parent_name" : "From_GeoJson_geometries",
                 "usr" : "c:@C@From_GeoJson_geometries@F@file_exists#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#"
@@ -77,7 +95,7 @@
                 "column" : 16,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
                 "kind" : 7,
-                "line" : 646,
+                "line" : 796,
                 "name" : "parse_geojson_objects(std::string)",
                 "parent_name" : "From_GeoJson_geometries",
                 "usr" : "c:@C@From_GeoJson_geometries@F@parse_geojson_objects#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#"
@@ -86,25 +104,34 @@
                 "column" : 16,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
                 "kind" : 7,
-                "line" : 675,
+                "line" : 825,
                 "name" : "parse_geojson_string(std::string)",
                 "parent_name" : "From_GeoJson_geometries",
                 "usr" : "c:@C@From_GeoJson_geometries@F@parse_geojson_string#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#"
             },
             {
+                "column" : 14,
+                "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
+                "kind" : 7,
+                "line" : 838,
+                "name" : "helper_geom_objects(From_GeoJson_geometries, json11::Json, bool, bool, bool, bool)",
+                "parent_name" : "From_GeoJson_geometries",
+                "usr" : "c:@C@From_GeoJson_geometries@F@helper_geom_objects#$@C@From_GeoJson_geometries#$@N@json11@C@Json#b#b#b#b#"
+            },
+            {
                 "column" : 12,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
                 "kind" : 6,
-                "line" : 703,
-                "name" : "export_From_geojson(std::string, bool, bool)",
+                "line" : 953,
+                "name" : "export_From_geojson(std::string, bool, bool, bool)",
                 "parent_name" : "",
-                "usr" : "c:@F@export_From_geojson#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#b#b#"
+                "usr" : "c:@F@export_From_geojson#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#b#b#b#"
             },
             {
                 "column" : 6,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
                 "kind" : 6,
-                "line" : 772,
+                "line" : 1000,
                 "name" : "export_From_JSON(std::string)",
                 "parent_name" : "",
                 "usr" : "c:@F@export_From_JSON#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#"
@@ -113,7 +140,7 @@
                 "column" : 13,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
                 "kind" : 6,
-                "line" : 800,
+                "line" : 1026,
                 "name" : "dump_geojson(std::string)",
                 "parent_name" : "",
                 "usr" : "c:@F@dump_geojson#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#"
@@ -122,14 +149,41 @@
                 "column" : 13,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
                 "kind" : 6,
-                "line" : 814,
+                "line" : 1040,
                 "name" : "Features_TO_Collection(std::vector<std::string>, std::vector<double>)",
                 "parent_name" : "",
                 "usr" : "c:@F@Features_TO_Collection#$@N@std@N@__1@C@vector>#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#$@N@std@N@__1@C@allocator>#S1_#$@N@std@N@__1@C@vector>#d#$@N@std@N@__1@C@allocator>#d#"
+            },
+            {
+                "column" : 12,
+                "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
+                "kind" : 6,
+                "line" : 1074,
+                "name" : "export_From_geojson_schema(std::string, std::string, bool, bool)",
+                "parent_name" : "",
+                "usr" : "c:@F@export_From_geojson_schema#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#S0_#b#b#"
+            },
+            {
+                "column" : 26,
+                "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
+                "kind" : 6,
+                "line" : 1169,
+                "name" : "list_files(const std::string &, bool)",
+                "parent_name" : "",
+                "usr" : "c:@F@list_files#&1$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#b#"
+            },
+            {
+                "column" : 6,
+                "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
+                "kind" : 6,
+                "line" : 1225,
+                "name" : "merge_json(const std::string &, std::string, std::string, bool)",
+                "parent_name" : "",
+                "usr" : "c:@F@merge_json#&1$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#S1_#S1_#b#"
             }
         ],
         "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/FROM_geojson.cpp",
-        "file_last_write" : 1489848850
+        "file_last_write" : 1504533898
     },
     {
         "definitions" : [
@@ -137,7 +191,7 @@
                 "column" : 7,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/TO_geojson.cpp",
                 "kind" : 2,
-                "line" : 40,
+                "line" : 41,
                 "name" : "GeoJson_Geometries<T>",
                 "parent_name" : "",
                 "usr" : "c:@CT>1#T@GeoJson_Geometries"
@@ -146,7 +200,7 @@
                 "column" : 16,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/TO_geojson.cpp",
                 "kind" : 7,
-                "line" : 50,
+                "line" : 51,
                 "name" : "Inner_GeoJson(std::string, T)",
                 "parent_name" : "GeoJson_Geometries<T>",
                 "usr" : "c:@CT>1#T@GeoJson_Geometries@F@Inner_GeoJson#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#t0.0#"
@@ -155,7 +209,7 @@
                 "column" : 14,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/TO_geojson.cpp",
                 "kind" : 7,
-                "line" : 73,
+                "line" : 74,
                 "name" : "To_Geom_Obj(std::string, T, bool)",
                 "parent_name" : "GeoJson_Geometries<T>",
                 "usr" : "c:@CT>1#T@GeoJson_Geometries@F@To_Geom_Obj#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#t0.0#b#"
@@ -164,7 +218,7 @@
                 "column" : 7,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/TO_geojson.cpp",
                 "kind" : 2,
-                "line" : 103,
+                "line" : 104,
                 "name" : "GeoJson_Collections",
                 "parent_name" : "",
                 "usr" : "c:@C@GeoJson_Collections"
@@ -173,7 +227,7 @@
                 "column" : 23,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/TO_geojson.cpp",
                 "kind" : 7,
-                "line" : 110,
+                "line" : 111,
                 "name" : "array_geometry_collection(std::vector<std::string>, Rcpp::List)",
                 "parent_name" : "GeoJson_Collections",
                 "usr" : "c:@C@GeoJson_Collections@F@array_geometry_collection#$@N@std@N@__1@C@vector>#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#$@N@std@N@__1@C@allocator>#S1_#$@N@Rcpp@C@Vector>#VI19#@N@Rcpp@CT>1#T@PreserveStorage#"
@@ -182,7 +236,7 @@
                 "column" : 14,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/TO_geojson.cpp",
                 "kind" : 7,
-                "line" : 169,
+                "line" : 170,
                 "name" : "geometry_collection(std::vector<std::string>, Rcpp::List, bool)",
                 "parent_name" : "GeoJson_Collections",
                 "usr" : "c:@C@GeoJson_Collections@F@geometry_collection#$@N@std@N@__1@C@vector>#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#$@N@std@N@__1@C@allocator>#S1_#$@N@Rcpp@C@Vector>#VI19#@N@Rcpp@CT>1#T@PreserveStorage#b#"
@@ -191,7 +245,7 @@
                 "column" : 16,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/TO_geojson.cpp",
                 "kind" : 7,
-                "line" : 206,
+                "line" : 207,
                 "name" : "typeof_item(Rcpp::List)",
                 "parent_name" : "GeoJson_Collections",
                 "usr" : "c:@C@GeoJson_Collections@F@typeof_item#$@N@Rcpp@C@Vector>#VI19#@N@Rcpp@CT>1#T@PreserveStorage#"
@@ -200,7 +254,7 @@
                 "column" : 24,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/TO_geojson.cpp",
                 "kind" : 7,
-                "line" : 285,
+                "line" : 288,
                 "name" : "inner_Feature(std::vector<std::string>, Rcpp::List, std::string)",
                 "parent_name" : "GeoJson_Collections",
                 "usr" : "c:@C@GeoJson_Collections@F@inner_Feature#$@N@std@N@__1@C@vector>#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#$@N@std@N@__1@C@allocator>#S1_#$@N@Rcpp@C@Vector>#VI19#@N@Rcpp@CT>1#T@PreserveStorage#S1_#"
@@ -209,7 +263,7 @@
                 "column" : 14,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/TO_geojson.cpp",
                 "kind" : 7,
-                "line" : 358,
+                "line" : 361,
                 "name" : "feature_OBJECT(std::vector<std::string>, Rcpp::List, bool)",
                 "parent_name" : "GeoJson_Collections",
                 "usr" : "c:@C@GeoJson_Collections@F@feature_OBJECT#$@N@std@N@__1@C@vector>#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#$@N@std@N@__1@C@allocator>#S1_#$@N@Rcpp@C@Vector>#VI19#@N@Rcpp@CT>1#T@PreserveStorage#b#"
@@ -218,7 +272,7 @@
                 "column" : 14,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/TO_geojson.cpp",
                 "kind" : 7,
-                "line" : 384,
+                "line" : 387,
                 "name" : "feature_collection(std::vector<std::string>, Rcpp::List, bool)",
                 "parent_name" : "GeoJson_Collections",
                 "usr" : "c:@C@GeoJson_Collections@F@feature_collection#$@N@std@N@__1@C@vector>#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#$@N@std@N@__1@C@allocator>#S1_#$@N@Rcpp@C@Vector>#VI19#@N@Rcpp@CT>1#T@PreserveStorage#b#"
@@ -227,7 +281,7 @@
                 "column" : 12,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/TO_geojson.cpp",
                 "kind" : 6,
-                "line" : 470,
+                "line" : 471,
                 "name" : "export_To_GeoJson(std::string, std::vector<double>, std::vector<std::vector<double> >, std::vector<std::vector<std::vector<double> > >, std::vector<std::vector<std::vector<std::vector<double> > > >, bool)",
                 "parent_name" : "",
                 "usr" : "c:@F@export_To_GeoJson#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#$@N@std@N@__1@C@vector>#d#$@N@std@N@__1@C@allocator>#d#$@N@std@N@__1@C@vector>#S3_#$@N@std@N@__1@C@allocator>#S3_#$@N@std@N@__1@C@vector>#S5_#$@N@std@N@__1@C@allocator>#S5_#$@N@std@N@__1@C@vector>#S7_#$@N@std@N@__1@C@allocator>#S7_#b#"
@@ -236,7 +290,7 @@
                 "column" : 12,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/TO_geojson.cpp",
                 "kind" : 6,
-                "line" : 512,
+                "line" : 513,
                 "name" : "Geom_Collection(std::vector<std::string>, Rcpp::List, bool)",
                 "parent_name" : "",
                 "usr" : "c:@F@Geom_Collection#$@N@std@N@__1@C@vector>#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#$@N@std@N@__1@C@allocator>#S1_#$@N@Rcpp@C@Vector>#VI19#@N@Rcpp@CT>1#T@PreserveStorage#b#"
@@ -245,7 +299,7 @@
                 "column" : 12,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/TO_geojson.cpp",
                 "kind" : 6,
-                "line" : 525,
+                "line" : 526,
                 "name" : "Feature_Obj(std::vector<std::string>, Rcpp::List, bool)",
                 "parent_name" : "",
                 "usr" : "c:@F@Feature_Obj#$@N@std@N@__1@C@vector>#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#$@N@std@N@__1@C@allocator>#S1_#$@N@Rcpp@C@Vector>#VI19#@N@Rcpp@CT>1#T@PreserveStorage#b#"
@@ -254,14 +308,14 @@
                 "column" : 12,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/TO_geojson.cpp",
                 "kind" : 6,
-                "line" : 538,
+                "line" : 539,
                 "name" : "Feature_collection_Obj(std::vector<std::string>, Rcpp::List, bool)",
                 "parent_name" : "",
                 "usr" : "c:@F@Feature_collection_Obj#$@N@std@N@__1@C@vector>#$@N@std@N@__1@C@basic_string>#C#$@N@std@N@__1@S@char_traits>#C#$@N@std@N@__1@C@allocator>#C#$@N@std@N@__1@C@allocator>#S1_#$@N@Rcpp@C@Vector>#VI19#@N@Rcpp@CT>1#T@PreserveStorage#b#"
             }
         ],
         "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/TO_geojson.cpp",
-        "file_last_write" : 1489848840
+        "file_last_write" : 1504533021
     },
     {
         "definitions" : [
@@ -951,7 +1005,7 @@
             }
         ],
         "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/json11.cpp",
-        "file_last_write" : 1489848876
+        "file_last_write" : 1504533021
     },
     {
         "definitions" : [
@@ -1182,6 +1236,6 @@
             }
         ],
         "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/json11.h",
-        "file_last_write" : 1484897122
+        "file_last_write" : 1504533021
     }
 ]

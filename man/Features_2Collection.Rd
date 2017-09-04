@@ -30,4 +30,3 @@ library(geojsonR)
 # res = Features_2Collection(vec_files, bbox_vec = NULL)
 
 }
-

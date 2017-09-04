@@ -246,7 +246,7 @@ List of 4
 
 <br>
 
-The **TO_GeoJson** function is an [R6 class](http://cran.r-project.org/package=R6), which takes as input a *vector* (in case of a *Point*) or a *list* (in case of the rest geometry objects) and converts it to a GeoJson object (named list). The output can also include the data in form of a geojson character string if the argument *stringify* is TRUE. The following code chunk shows the output for a polygon with interior rings,
+The **TO_GeoJson** function is an [R6 class](https://cran.r-project.org/package=R6), which takes as input a *vector* (in case of a *Point*) or a *list* (in case of the rest geometry objects) and converts it to a GeoJson object (named list). The output can also include the data in form of a geojson character string if the argument *stringify* is TRUE. The following code chunk shows the output for a polygon with interior rings,
 
 
 ```{r, eval = F}

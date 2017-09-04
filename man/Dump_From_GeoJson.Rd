@@ -24,4 +24,3 @@ library(geojsonR)
 # res = Dump_From_GeoJson("/myfolder/point.geojson")
 
 }
-
