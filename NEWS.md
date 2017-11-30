@@ -1,4 +1,9 @@
 
+## geojsonR 1.0.4
+
+I modified the *Makevars* files to allow *OpenMP* usage. The *geojsonR* package is not parallelized, however the *Armadillo* library uses *OpenMP* internally to improve the execuction time of the functions.
+
+
 ## geojsonR 1.0.3
 
 I added the *merge_files* function.

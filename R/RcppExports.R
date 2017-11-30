@@ -2,46 +2,46 @@
 # Generator token: 10BE3573-1514-4C36-9D1C-5A225CD40393
 
 export_From_geojson <- function(input_file, flatten_coords = FALSE, average_coordinates = FALSE, to_list = FALSE) {
-    .Call('geojsonR_export_From_geojson', PACKAGE = 'geojsonR', input_file, flatten_coords, average_coordinates, to_list)
+    .Call(`_geojsonR_export_From_geojson`, input_file, flatten_coords, average_coordinates, to_list)
 }
 
 export_From_JSON <- function(input_file) {
-    .Call('geojsonR_export_From_JSON', PACKAGE = 'geojsonR', input_file)
+    .Call(`_geojsonR_export_From_JSON`, input_file)
 }
 
 dump_geojson <- function(input_data) {
-    .Call('geojsonR_dump_geojson', PACKAGE = 'geojsonR', input_data)
+    .Call(`_geojsonR_dump_geojson`, input_data)
 }
 
 Features_TO_Collection <- function(feat_files_lst, bbox_vec) {
-    .Call('geojsonR_Features_TO_Collection', PACKAGE = 'geojsonR', feat_files_lst, bbox_vec)
+    .Call(`_geojsonR_Features_TO_Collection`, feat_files_lst, bbox_vec)
 }
 
 export_From_geojson_schema <- function(input_file, GEOMETRY_OBJECT_NAME = "", average_coordinates = FALSE, to_list = FALSE) {
-    .Call('geojsonR_export_From_geojson_schema', PACKAGE = 'geojsonR', input_file, GEOMETRY_OBJECT_NAME, average_coordinates, to_list)
+    .Call(`_geojsonR_export_From_geojson_schema`, input_file, GEOMETRY_OBJECT_NAME, average_coordinates, to_list)
 }
 
 list_files <- function(path, full_path = TRUE) {
-    .Call('geojsonR_list_files', PACKAGE = 'geojsonR', path, full_path)
+    .Call(`_geojsonR_list_files`, path, full_path)
 }
 
 merge_json <- function(input_folder, output_file, concat_delimiter = "\n", verbose = FALSE) {
-    invisible(.Call('geojsonR_merge_json', PACKAGE = 'geojsonR', input_folder, output_file, concat_delimiter, verbose))
+    invisible(.Call(`_geojsonR_merge_json`, input_folder, output_file, concat_delimiter, verbose))
 }
 
 export_To_GeoJson <- function(geometry_object, data_POINTS, data_ARRAYS, data_ARRAY_ARRAYS, data_POLYGON_ARRAYS, stringify = FALSE) {
-    .Call('geojsonR_export_To_GeoJson', PACKAGE = 'geojsonR', geometry_object, data_POINTS, data_ARRAYS, data_ARRAY_ARRAYS, data_POLYGON_ARRAYS, stringify)
+    .Call(`_geojsonR_export_To_GeoJson`, geometry_object, data_POINTS, data_ARRAYS, data_ARRAY_ARRAYS, data_POLYGON_ARRAYS, stringify)
 }
 
 Geom_Collection <- function(geometry_object_names, geometry_objects, stringify = FALSE) {
-    .Call('geojsonR_Geom_Collection', PACKAGE = 'geojsonR', geometry_object_names, geometry_objects, stringify)
+    .Call(`_geojsonR_Geom_Collection`, geometry_object_names, geometry_objects, stringify)
 }
 
 Feature_Obj <- function(geometry_object_names, geometry_objects, stringify = FALSE) {
-    .Call('geojsonR_Feature_Obj', PACKAGE = 'geojsonR', geometry_object_names, geometry_objects, stringify)
+    .Call(`_geojsonR_Feature_Obj`, geometry_object_names, geometry_objects, stringify)
 }
 
 Feature_collection_Obj <- function(geometry_object_names, geometry_objects, stringify = FALSE) {
-    .Call('geojsonR_Feature_collection_Obj', PACKAGE = 'geojsonR', geometry_object_names, geometry_objects, stringify)
+    .Call(`_geojsonR_Feature_collection_Obj`, geometry_object_names, geometry_objects, stringify)
 }
 

@@ -8,7 +8,7 @@ using namespace Rcpp;
 
 // export_From_geojson
 Rcpp::List export_From_geojson(std::string input_file, bool flatten_coords, bool average_coordinates, bool to_list);
-RcppExport SEXP geojsonR_export_From_geojson(SEXP input_fileSEXP, SEXP flatten_coordsSEXP, SEXP average_coordinatesSEXP, SEXP to_listSEXP) {
+RcppExport SEXP _geojsonR_export_From_geojson(SEXP input_fileSEXP, SEXP flatten_coordsSEXP, SEXP average_coordinatesSEXP, SEXP to_listSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -22,7 +22,7 @@ END_RCPP
 }
 // export_From_JSON
 SEXP export_From_JSON(std::string input_file);
-RcppExport SEXP geojsonR_export_From_JSON(SEXP input_fileSEXP) {
+RcppExport SEXP _geojsonR_export_From_JSON(SEXP input_fileSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -33,7 +33,7 @@ END_RCPP
 }
 // dump_geojson
 std::string dump_geojson(std::string input_data);
-RcppExport SEXP geojsonR_dump_geojson(SEXP input_dataSEXP) {
+RcppExport SEXP _geojsonR_dump_geojson(SEXP input_dataSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -44,7 +44,7 @@ END_RCPP
 }
 // Features_TO_Collection
 std::string Features_TO_Collection(std::vector<std::string> feat_files_lst, std::vector<double> bbox_vec);
-RcppExport SEXP geojsonR_Features_TO_Collection(SEXP feat_files_lstSEXP, SEXP bbox_vecSEXP) {
+RcppExport SEXP _geojsonR_Features_TO_Collection(SEXP feat_files_lstSEXP, SEXP bbox_vecSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -56,7 +56,7 @@ END_RCPP
 }
 // export_From_geojson_schema
 Rcpp::List export_From_geojson_schema(std::string input_file, std::string GEOMETRY_OBJECT_NAME, bool average_coordinates, bool to_list);
-RcppExport SEXP geojsonR_export_From_geojson_schema(SEXP input_fileSEXP, SEXP GEOMETRY_OBJECT_NAMESEXP, SEXP average_coordinatesSEXP, SEXP to_listSEXP) {
+RcppExport SEXP _geojsonR_export_From_geojson_schema(SEXP input_fileSEXP, SEXP GEOMETRY_OBJECT_NAMESEXP, SEXP average_coordinatesSEXP, SEXP to_listSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -70,7 +70,7 @@ END_RCPP
 }
 // list_files
 std::vector<std::string> list_files(const std::string& path, bool full_path);
-RcppExport SEXP geojsonR_list_files(SEXP pathSEXP, SEXP full_pathSEXP) {
+RcppExport SEXP _geojsonR_list_files(SEXP pathSEXP, SEXP full_pathSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -82,7 +82,7 @@ END_RCPP
 }
 // merge_json
 void merge_json(const std::string& input_folder, std::string output_file, std::string concat_delimiter, bool verbose);
-RcppExport SEXP geojsonR_merge_json(SEXP input_folderSEXP, SEXP output_fileSEXP, SEXP concat_delimiterSEXP, SEXP verboseSEXP) {
+RcppExport SEXP _geojsonR_merge_json(SEXP input_folderSEXP, SEXP output_fileSEXP, SEXP concat_delimiterSEXP, SEXP verboseSEXP) {
 BEGIN_RCPP
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const std::string& >::type input_folder(input_folderSEXP);
@@ -95,7 +95,7 @@ END_RCPP
 }
 // export_To_GeoJson
 Rcpp::List export_To_GeoJson(std::string geometry_object, std::vector<double> data_POINTS, std::vector<std::vector<double>> data_ARRAYS, std::vector<std::vector<std::vector<double>>> data_ARRAY_ARRAYS, std::vector<std::vector<std::vector<std::vector<double>>>> data_POLYGON_ARRAYS, bool stringify);
-RcppExport SEXP geojsonR_export_To_GeoJson(SEXP geometry_objectSEXP, SEXP data_POINTSSEXP, SEXP data_ARRAYSSEXP, SEXP data_ARRAY_ARRAYSSEXP, SEXP data_POLYGON_ARRAYSSEXP, SEXP stringifySEXP) {
+RcppExport SEXP _geojsonR_export_To_GeoJson(SEXP geometry_objectSEXP, SEXP data_POINTSSEXP, SEXP data_ARRAYSSEXP, SEXP data_ARRAY_ARRAYSSEXP, SEXP data_POLYGON_ARRAYSSEXP, SEXP stringifySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -111,7 +111,7 @@ END_RCPP
 }
 // Geom_Collection
 Rcpp::List Geom_Collection(std::vector<std::string> geometry_object_names, Rcpp::List geometry_objects, bool stringify);
-RcppExport SEXP geojsonR_Geom_Collection(SEXP geometry_object_namesSEXP, SEXP geometry_objectsSEXP, SEXP stringifySEXP) {
+RcppExport SEXP _geojsonR_Geom_Collection(SEXP geometry_object_namesSEXP, SEXP geometry_objectsSEXP, SEXP stringifySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -124,7 +124,7 @@ END_RCPP
 }
 // Feature_Obj
 Rcpp::List Feature_Obj(std::vector<std::string> geometry_object_names, Rcpp::List geometry_objects, bool stringify);
-RcppExport SEXP geojsonR_Feature_Obj(SEXP geometry_object_namesSEXP, SEXP geometry_objectsSEXP, SEXP stringifySEXP) {
+RcppExport SEXP _geojsonR_Feature_Obj(SEXP geometry_object_namesSEXP, SEXP geometry_objectsSEXP, SEXP stringifySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
@@ -137,7 +137,7 @@ END_RCPP
 }
 // Feature_collection_Obj
 Rcpp::List Feature_collection_Obj(std::vector<std::string> geometry_object_names, Rcpp::List geometry_objects, bool stringify);
-RcppExport SEXP geojsonR_Feature_collection_Obj(SEXP geometry_object_namesSEXP, SEXP geometry_objectsSEXP, SEXP stringifySEXP) {
+RcppExport SEXP _geojsonR_Feature_collection_Obj(SEXP geometry_object_namesSEXP, SEXP geometry_objectsSEXP, SEXP stringifySEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;

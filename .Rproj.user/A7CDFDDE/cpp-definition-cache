@@ -320,6 +320,21 @@
     {
         "definitions" : [
             {
+                "column" : 6,
+                "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/init.c",
+                "kind" : 6,
+                "line" : 38,
+                "name" : "R_init_geojsonR(DllInfo *)",
+                "parent_name" : "",
+                "usr" : "c:@F@R_init_geojsonR#*$@S@_DllInfo#"
+            }
+        ],
+        "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/init.c",
+        "file_last_write" : 1504534954
+    },
+    {
+        "definitions" : [
+            {
                 "column" : 8,
                 "file" : "/home/lampros/Desktop/kaggle_gpu/add_GITHUB/geojsonR/src/json11.cpp",
                 "kind" : 3,
