@@ -16,5 +16,5 @@ a (nested) list
 secondary function for shiny Applications
 }
 \details{
-This function is meant for \emph{shiny Applications}. To read a GeoJson file use the \emph{FROM_GeoJson} function.
+This function is meant for \emph{shiny Applications}. To read a GeoJson file use either the \emph{FROM_GeoJson} or \emph{FROM_GeoJson_Schema} function.
 }

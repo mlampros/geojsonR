@@ -1,4 +1,9 @@
 
+## geojsonR 1.0.5
+
+I modified the R functions which made a connection to Url's  (previously the connection was not closed in an appropriate way producing that way a warning)
+
+
 ## geojsonR 1.0.4
 
 I modified the *Makevars* files to allow *OpenMP* usage. The *geojsonR* package is not parallelized, however the *Armadillo* library uses *OpenMP* internally to improve the execuction time of the functions.

@@ -1,3 +1,4 @@
+
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/geojsonR)](http://cran.r-project.org/package=geojsonR)
 [![Travis-CI Build Status](https://travis-ci.org/mlampros/geojsonR.svg?branch=master)](https://travis-ci.org/mlampros/geojsonR)
 [![codecov.io](https://codecov.io/github/mlampros/geojsonR/coverage.svg?branch=master)](https://codecov.io/github/mlampros/geojsonR?branch=master)

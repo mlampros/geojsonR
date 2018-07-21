@@ -57,7 +57,7 @@ FROM_GeoJson = function(url_file_string, Flatten_Coords = FALSE, Average_Coordin
 
     url_file_string = paste(url_json, collapse = "\n")
 
-    rm(con); gc()
+    close(con); gc()
   }
 
   res = export_From_geojson(url_file_string, Flatten_Coords, Average_Coordinates, To_List)
@@ -113,7 +113,7 @@ FROM_GeoJson_Schema = function(url_file_string, geometry_name = "", Average_Coor
 
     url_file_string = paste(url_json, collapse = "\n")
 
-    rm(con); gc()
+    close(con); gc()
   }
 
   res = export_From_geojson_schema(url_file_string, geometry_name, Average_Coordinates, To_List)
@@ -152,7 +152,7 @@ Dump_From_GeoJson = function(url_file) {
 
     res = paste(url_json, collapse = "\n")
 
-    rm(con); gc()}
+    close(con); gc()}
 
   else if (file.exists(url_file)) {
 
@@ -558,7 +558,7 @@ Features_2Collection = function(Features_files_vec, bbox_vec = NULL) {
 #' @param input_file a character string specifying a path to a file
 #' @return a (nested) list
 #' @details
-#' This function is meant for \emph{shiny Applications}. To read a GeoJson file use the \emph{FROM_GeoJson} function.
+#' This function is meant for \emph{shiny Applications}. To read a GeoJson file use either the \emph{FROM_GeoJson} or \emph{FROM_GeoJson_Schema} function.
 #' @export
 
 shiny_from_JSON = function(input_file) {              # shiny apps should be in a separate package if Rcpp::class(es) are present
