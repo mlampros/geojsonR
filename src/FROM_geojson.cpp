@@ -10,7 +10,7 @@
  *
  * @Notes: reads GeoJson from file / url / character-string
  *
- * @last_modified: September 2017
+ * @last_modified: September 2018
  *
  **/
 
@@ -1173,8 +1173,8 @@ void merge_json(const std::string& input_folder, std::string output_file, std::s
   arma::wall_clock timer;
 
   if (verbose) {
-
-    if (verbose) { timer.tic(); Rprintf("\n"); }
+    
+    timer.tic(); Rprintf("\n");
   }
 
   std::vector<std::string> all_files = list_files(input_folder, true);        // by default return full-paths

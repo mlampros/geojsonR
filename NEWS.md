@@ -1,3 +1,7 @@
+## geojsonR 1.0.5
+
+I fixed minor typos in the .cpp files
+
 
 ## geojsonR 1.0.5
 
