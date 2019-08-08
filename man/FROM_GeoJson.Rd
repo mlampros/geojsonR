@@ -28,14 +28,14 @@ that kind a user should take advantage of the \emph{FROM_GeoJson_Schema} functio
 }
 \examples{
 
+\dontrun{
+
 library(geojsonR)
 
 
 # INPUT IS A FILE
 
-# Do not run
-
-# res = FROM_GeoJson(url_file_string = "/myfolder/feature_collection.geojson")
+res = FROM_GeoJson(url_file_string = "/myfolder/feature_collection.geojson")
 
 
 # INPUT IS A GEOJSON (character string)
@@ -52,8 +52,7 @@ res = FROM_GeoJson(url_file_string = tmp_str)
 
 # INPUT IS A URL
 
-# Do not run
-
-# res = FROM_GeoJson(url_file_string = "http://www.EXAMPLE_web_page.geojson")
+res = FROM_GeoJson(url_file_string = "http://www.EXAMPLE_web_page.geojson")
+}
 
 }

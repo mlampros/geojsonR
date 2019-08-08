@@ -13,8 +13,8 @@ dump_geojson <- function(input_data) {
     .Call(`_geojsonR_dump_geojson`, input_data)
 }
 
-Features_TO_Collection <- function(feat_files_lst, bbox_vec) {
-    .Call(`_geojsonR_Features_TO_Collection`, feat_files_lst, bbox_vec)
+Features_TO_Collection <- function(feat_files_lst, bbox_vec, verbose = FALSE) {
+    .Call(`_geojsonR_Features_TO_Collection`, feat_files_lst, bbox_vec, verbose)
 }
 
 export_From_geojson_schema <- function(input_file, GEOMETRY_OBJECT_NAME = "", average_coordinates = FALSE, to_list = FALSE) {

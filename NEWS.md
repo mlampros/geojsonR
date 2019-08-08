@@ -1,4 +1,11 @@
-## geojsonR 1.0.5
+
+## geojsonR 1.0.7
+
+* I've added the *write_path* and *verbose* parameters to the *Features_2Collection* function
+* I've added error handling in the *parse_geojson_string* and *parse_geojson_objects* methods of the *From_GeoJson_geometries* C++ class to account for cases where the output of the *json11::Json::parse* function is a NULL object ( I've included also a test case for demonstration )
+
+
+## geojsonR 1.0.6
 
 I fixed minor typos in the .cpp files
 

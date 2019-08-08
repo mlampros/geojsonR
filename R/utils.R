@@ -13,14 +13,14 @@
 #' @export
 #' @examples
 #'
+#' \dontrun{
+#'
 #' library(geojsonR)
 #'
 #'
 #' # INPUT IS A FILE
 #'
-#' # Do not run
-#'
-#' # res = FROM_GeoJson(url_file_string = "/myfolder/feature_collection.geojson")
+#' res = FROM_GeoJson(url_file_string = "/myfolder/feature_collection.geojson")
 #'
 #'
 #' # INPUT IS A GEOJSON (character string)
@@ -37,9 +37,8 @@
 #'
 #' # INPUT IS A URL
 #'
-#' # Do not run
-#'
-#' # res = FROM_GeoJson(url_file_string = "http://www.EXAMPLE_web_page.geojson")
+#' res = FROM_GeoJson(url_file_string = "http://www.EXAMPLE_web_page.geojson")
+#' }
 #'
 
 FROM_GeoJson = function(url_file_string, Flatten_Coords = FALSE, Average_Coordinates = FALSE, To_List = FALSE) {
@@ -130,11 +129,12 @@ FROM_GeoJson_Schema = function(url_file_string, geometry_name = "", Average_Coor
 #' @export
 #' @examples
 #'
+#' \dontrun{
+#'
 #' library(geojsonR)
 #'
-#' # Do not run
-#'
-#' # res = Dump_From_GeoJson("/myfolder/point.geojson")
+#' res = Dump_From_GeoJson("/myfolder/point.geojson")
+#' }
 #'
 
 Dump_From_GeoJson = function(url_file) {
@@ -511,22 +511,27 @@ TO_GeoJson <- R6::R6Class("TO_GeoJson",
 #'
 #' @param Features_files_vec a character vector specifying paths to files (Feature geojson objects)
 #' @param bbox_vec either NULL or a numeric vector
+#' @param write_path either NULL or a character string specifying a valid path to a file ( preferably with a \emph{.geojson extension} ) where the output data will be saved
+#' @param verbose a boolean. If TRUE then information will be printed out in the console
 #' @return a FeatureCollection dump
+#' @details
+#' The \emph{Features_2Collection} function utilizes internally a for-loop. In case of an error set the \emph{verbose} parameter to TRUE to find out which file leads to this error.
 #' @export
 #' @examples
 #'
+#' \dontrun{
+#'
 #' library(geojsonR)
 #'
-#' # Do not run
+#' vec_files = c("/myfolder/Feature1.geojson", "/myfolder/Feature2.geojson",
+#'               "/myfolder/Feature3.geojson", "/myfolder/Feature4.geojson",
+#'               "/myfolder/Feature5.geojson")
 #'
-#' # vec_files = c("/myfolder/Feature1.geojson", "/myfolder/Feature2.geojson",
-#' #               "/myfolder/Feature3.geojson", "/myfolder/Feature4.geojson",
-#' #               "/myfolder/Feature5.geojson")
-#'
-#' # res = Features_2Collection(vec_files, bbox_vec = NULL)
+#' res = Features_2Collection(vec_files, bbox_vec = NULL)
+#' }
 #'
 
-Features_2Collection = function(Features_files_vec, bbox_vec = NULL) {
+Features_2Collection = function(Features_files_vec, bbox_vec = NULL, write_path = NULL, verbose = FALSE) {
 
   if (!inherits(Features_files_vec, c('vector', 'character'))) {
 
@@ -545,7 +550,13 @@ Features_2Collection = function(Features_files_vec, bbox_vec = NULL) {
     }
   }
 
-  tmp_feat = Features_TO_Collection(Features_files_vec, bbox_vec)
+  tmp_feat = Features_TO_Collection(Features_files_vec, bbox_vec, verbose)
+
+  if (!is.null(write_path)) {
+    fileConn = file(write_path)
+    writeLines(tmp_feat, fileConn)
+    close(fileConn)
+  }
 
   return(tmp_feat)
 }

@@ -4,12 +4,17 @@
 \alias{Features_2Collection}
 \title{creates a FeatureCollection dump from multiple Feature geojson objects}
 \usage{
-Features_2Collection(Features_files_vec, bbox_vec = NULL)
+Features_2Collection(Features_files_vec, bbox_vec = NULL,
+  write_path = NULL, verbose = FALSE)
 }
 \arguments{
 \item{Features_files_vec}{a character vector specifying paths to files (Feature geojson objects)}
 
 \item{bbox_vec}{either NULL or a numeric vector}
+
+\item{write_path}{either NULL or a character string specifying a valid path to a file ( preferably with a \emph{.geojson extension} ) where the output data will be saved}
+
+\item{verbose}{a boolean. If TRUE then information will be printed out in the console}
 }
 \value{
 a FeatureCollection dump
@@ -17,16 +22,20 @@ a FeatureCollection dump
 \description{
 creates a FeatureCollection dump from multiple Feature geojson objects
 }
+\details{
+The \emph{Features_2Collection} function utilizes internally a for-loop. In case of an error set the \emph{verbose} parameter to TRUE to find out which file leads to this error.
+}
 \examples{
+
+\dontrun{
 
 library(geojsonR)
 
-# Do not run
+vec_files = c("/myfolder/Feature1.geojson", "/myfolder/Feature2.geojson",
+              "/myfolder/Feature3.geojson", "/myfolder/Feature4.geojson",
+              "/myfolder/Feature5.geojson")
 
-# vec_files = c("/myfolder/Feature1.geojson", "/myfolder/Feature2.geojson",
-#               "/myfolder/Feature3.geojson", "/myfolder/Feature4.geojson",
-#               "/myfolder/Feature5.geojson")
-
-# res = Features_2Collection(vec_files, bbox_vec = NULL)
+res = Features_2Collection(vec_files, bbox_vec = NULL)
+}
 
 }

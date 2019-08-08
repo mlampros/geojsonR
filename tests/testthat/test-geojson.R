@@ -822,3 +822,16 @@ testthat::test_that("in case that the 'OUTPUT_FILE' already exists it returns a 
 
 
 #===========================================================================
+
+
+
+testthat::test_that("it throws an error in case that the json object includes an invalid json data type ( valid json-objects : 'string', 'number', 'a JSON object', 'array', 'boolean', 'null' )", {
+
+  char_str = '{"invalid_data": NaN, "valid_data": 1}'              # NaN returns NULL
+
+  testthat::expect_error( geojsonR:::export_From_JSON(char_str) )
+})
+
+
+#===========================================================================
+

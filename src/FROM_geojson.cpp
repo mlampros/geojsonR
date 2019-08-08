@@ -10,7 +10,7 @@
  *
  * @Notes: reads GeoJson from file / url / character-string
  *
- * @last_modified: September 2018
+ * @last_modified: August 2019
  *
  **/
 
@@ -807,9 +807,19 @@ public:
       data_in += chs;
     }
 
-    std::string Error_Message = "the data is not a GeoJson object";
+    std::string Error_Message;
 
-    json11::Json json_input = json11::Json::parse(data_in, Error_Message);
+    json11::Json json_input = json11::Json::parse(data_in, Error_Message, json11::JsonParse::COMMENTS);
+
+    if (json_input.is_null()) {
+
+      Rcpp::stop("The output json object is NULL! See if any of the input data objects is not a valid json data type!");
+
+      if (!Error_Message.empty()) {
+
+        Rcpp::Rcout << Error_Message << std::endl;
+      }
+    }
 
     return json_input;
   }
@@ -820,9 +830,19 @@ public:
 
   json11::Json parse_geojson_string(std::string character_string) {
 
-    std::string Error_Message = "the data is not a GeoJson object";
+    std::string Error_Message;
 
-    json11::Json json_input = json11::Json::parse(character_string, Error_Message);
+    json11::Json json_input = json11::Json::parse(character_string, Error_Message, json11::JsonParse::COMMENTS);
+
+    if (json_input.is_null()) {
+
+      Rcpp::stop("The output json object is NULL! See if any of the input data objects is not a valid json data type!");
+
+      if (!Error_Message.empty()) {
+
+        Rcpp::Rcout << Error_Message << std::endl;
+      }
+    }
 
     return json_input;
   }
@@ -984,7 +1004,9 @@ std::string dump_geojson(std::string input_data) {
 //
 
 // [[Rcpp::export]]
-std::string Features_TO_Collection(std::vector<std::string> feat_files_lst, std::vector<double> bbox_vec) {
+std::string Features_TO_Collection(std::vector<std::string> feat_files_lst,
+                                   std::vector<double> bbox_vec,
+                                   bool verbose = false) {
 
   From_GeoJson_geometries prs;
 
@@ -993,6 +1015,8 @@ std::string Features_TO_Collection(std::vector<std::string> feat_files_lst, std:
   for (unsigned int i = 0; i < feat_files_lst.size(); i++) {
 
     std::string input_file = feat_files_lst[i];
+
+    if (verbose) Rcpp::Rcout << "File '" << input_file << "' will be processed ..." << std::endl;
 
     json11::Json tmp_prs = prs.parse_geojson_objects(input_file);
 
@@ -1173,7 +1197,7 @@ void merge_json(const std::string& input_folder, std::string output_file, std::s
   arma::wall_clock timer;
 
   if (verbose) {
-    
+
     timer.tic(); Rprintf("\n");
   }
 

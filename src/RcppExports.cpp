@@ -43,14 +43,15 @@ BEGIN_RCPP
 END_RCPP
 }
 // Features_TO_Collection
-std::string Features_TO_Collection(std::vector<std::string> feat_files_lst, std::vector<double> bbox_vec);
-RcppExport SEXP _geojsonR_Features_TO_Collection(SEXP feat_files_lstSEXP, SEXP bbox_vecSEXP) {
+std::string Features_TO_Collection(std::vector<std::string> feat_files_lst, std::vector<double> bbox_vec, bool verbose);
+RcppExport SEXP _geojsonR_Features_TO_Collection(SEXP feat_files_lstSEXP, SEXP bbox_vecSEXP, SEXP verboseSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::vector<std::string> >::type feat_files_lst(feat_files_lstSEXP);
     Rcpp::traits::input_parameter< std::vector<double> >::type bbox_vec(bbox_vecSEXP);
-    rcpp_result_gen = Rcpp::wrap(Features_TO_Collection(feat_files_lst, bbox_vec));
+    Rcpp::traits::input_parameter< bool >::type verbose(verboseSEXP);
+    rcpp_result_gen = Rcpp::wrap(Features_TO_Collection(feat_files_lst, bbox_vec, verbose));
     return rcpp_result_gen;
 END_RCPP
 }
