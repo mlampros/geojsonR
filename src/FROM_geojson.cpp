@@ -10,7 +10,7 @@
  *
  * @Notes: reads GeoJson from file / url / character-string
  *
- * @last_modified: August 2019
+ * @last_modified: March 2020
  *
  **/
 
@@ -27,6 +27,7 @@
 #include <string>
 #include <fstream>
 #include <dirent.h>
+#include <map>
 
 #include <R.h>
 #include <Rinternals.h>
@@ -1258,6 +1259,456 @@ void merge_json(const std::string& input_folder, std::string output_file, std::s
   }
 
   out.close();
+}
+
+
+
+
+
+// This function takes advantage of the 'C-structures' in Rcpp to extract the data type of an object
+// ( somehow difficult to do this currenty in C++11 )
+// It works the same way as the "typeof_item" function (see 'TO_geojson.cpp' file for more info)
+//
+// https://raw.githubusercontent.com/PublicaMundi/MappingAPI/master/data/geojson/us-states.json
+// Those are C-structures [ http://adv-r.had.co.nz/C-interface.html ]
+//
+
+// [[Rcpp::export]]
+std::string DATA_TYPE(SEXP sublist) {
+
+  int length_item = LENGTH(sublist);
+
+  std::string res;
+
+  if (length_item == 1) {
+
+    if (TYPEOF(sublist) == REALSXP) {                              // double
+      res = "double";
+    }
+    else if (TYPEOF(sublist) == LGLSXP) {                          // boolean
+      res = "boolean";
+    }
+    else if (TYPEOF(sublist) == STRSXP) {                          // std::string
+      res = "string";
+    }
+    else if (TYPEOF(sublist) == NILSXP) {                          // NULL
+      res = "null";
+    }
+    else if (TYPEOF(sublist) == INTSXP) {                          // integer
+      res = "int";
+    }
+    else if (TYPEOF(sublist) == VECSXP) {                          // list
+      res = "list";
+    }
+    else {
+      Rcpp::stop("In case that the object is of length EQUAL to 1 it must be of type 'double', 'boolean', 'string', 'list' or 'null'");
+    }
+  }
+  else {
+    if (TYPEOF(sublist) == VECSXP) {
+      res = "list";
+    }
+    else if (TYPEOF(sublist) == REALSXP) {              // normally this is an numeric-vector but matrices and arrays are recognized as such types too
+      res = "NUMERIC_matrix_array_vector";
+    }
+    else if (TYPEOF(sublist) == INTSXP) {               // normally this is an integer-vector but matrices and arrays are recognized as such types too
+      res = "INTEGER_matrix_array_vector";
+    }
+    else {
+      Rcpp::stop("In case that the object is of length greater than 1 it must be either an Rcpp::List or a Matrix!");
+    }
+  }
+
+  return res;
+}
+
+
+
+
+// inner function for 'SAVE_R_list_Features_2_FeatureCollection'
+// which concatenates the coordinates
+//
+
+// [[Rcpp::export]]
+std::string inner_coords(Rcpp::List geom_lst, int z, bool polygon_interior = false) {
+
+  Rcpp::NumericMatrix geom_mt = Rcpp::as<Rcpp::NumericMatrix>(geom_lst[z]);             // this matrix will have 2 columns (longitude and latitude)
+  std::string geom_str_poly;
+
+  for (int w = 0; w < geom_mt.nrow(); w++) {
+
+    Rcpp::NumericVector tmp_inner = geom_mt.row(w);
+
+    if (tmp_inner.size() != 2) {
+      Rcpp::stop("The input data MUST have 2 columns ('latitude' and 'longitude')!");
+    }
+
+    double first_item = tmp_inner[0];
+    double second_item = tmp_inner[1];
+
+    if (w == 0) {
+      if (polygon_interior) {
+        geom_str_poly += "[";
+      }
+      else {
+        geom_str_poly += "[[";
+      }
+    }
+
+    geom_str_poly += "[" + std::to_string(first_item) + "," + std::to_string(second_item) + "]";
+
+    if (w < geom_mt.nrow() - 1) {
+      geom_str_poly += ",";
+    }
+    if (w == geom_mt.nrow() - 1) {
+      if (polygon_interior) {
+        geom_str_poly += "]";
+      }
+      else {
+        geom_str_poly += "]]";
+      }
+    }
+  }
+
+  return geom_str_poly;
+}
+
+
+
+
+// inner function for 'SAVE_R_list_Features_2_FeatureCollection' which
+// deals with Polygons with interior rings
+//
+
+// [[Rcpp::export]]
+std::string Polygon_with_interior_rings(Rcpp::List geom_lst, int i, bool verbose) {
+
+  if (verbose) Rcpp::Rcout << "Input Feature: " << i+1 << "  --  POLYGON with INTERIOR Rings!" << std::endl;
+  Rcpp::List Poly_interior = geom_lst[0];
+  std::vector<std::string> all_interiors;
+  std::string coords;
+
+  for (unsigned int m = 0; m < Poly_interior.size(); m++) {
+
+    std::string geom_str_poly = inner_coords(Poly_interior, m, true);
+    all_interiors.push_back(geom_str_poly);
+
+    if (m != (Poly_interior.size() - 1)) {
+      all_interiors.push_back(", ");
+    }
+  }
+
+  coords += "[";
+
+  for (unsigned int n = 0; n < all_interiors.size(); n++) {
+    coords += all_interiors[n];
+  }
+
+  coords += "]";
+
+  return coords;
+}
+
+
+
+
+// This function takes GeoJson Features in form of R lists and write those Features to a 'FeatureCollection'
+//
+
+// [[Rcpp::export]]
+std::string SAVE_R_list_Features_2_FeatureCollection(Rcpp::List x, std::string path_to_file = "", bool verbose = false) {
+
+  std::vector<std::string> allowed_attributes = {"type", "id", "properties", "geometry"};
+  std::sort(allowed_attributes.begin(), allowed_attributes.end());                                // sort both the 'allowed_attributes' and 'input_attrubutes' so that 'std::equal' can function properly
+  std::map<int, std::map<std::string, std::string> > OUTER_map;
+
+  for (unsigned int i = 0; i < x.size(); i++) {                                                   // 'x' is a list of 'Features'
+
+    Rcpp::List sublist = x[i];
+
+    Rcpp::CharacterVector nams_sublist = sublist.names();
+    std::vector<std::string> input_attrubutes = Rcpp::as<std::vector<std::string> >(nams_sublist);
+    std::sort(input_attrubutes.begin(), input_attrubutes.end());
+    bool result = std::equal(input_attrubutes.begin(), input_attrubutes.end(), allowed_attributes.begin());
+    if (!result) Rcpp::stop("The input lists / sublists must include the following names: 'type', 'id', 'properties' and 'geometry'!");
+
+    std::map<std::string, std::string> INNER_map;
+
+    for (unsigned int j = 0; j < nams_sublist.size(); j++) {
+
+      std::string inner_name = Rcpp::as<std::string>(nams_sublist[j]);
+      SEXP sexp_obj = sublist[inner_name];
+
+      if (verbose) Rcpp::Rcout << "Input Feature: " << i+1 << "  --  Attribute: '" << inner_name << "'" << "  --  Data type: '" << DATA_TYPE(sexp_obj) << "'" << std::endl;
+
+      if (inner_name == "type") {
+        if (DATA_TYPE(sexp_obj) == "string") {
+
+          std::string inner_data = sublist[inner_name];
+
+          if (inner_data != "Feature") {
+            Rcpp::stop("In case that the name of the input object equals to 'type' then it MUST be a 'Feature' attribute! Sublist:" + std::to_string(i+1) + " type:" + std::to_string(j+1));
+          }
+          else {
+            INNER_map["type"] = "\"type\":\"Feature\"";                                           // add quotes to an std::string [ https://stackoverflow.com/a/12338826/8302386 ]
+          }
+        }
+        else {
+          Rcpp::stop("In case that the name of the input object equals to 'type' then it MUST be a character string! Sublist:" + std::to_string(i+1) + " type:" + std::to_string(j+1));
+        }
+      }
+      else if (inner_name == "id") {
+
+        std::string ID;
+
+        if (DATA_TYPE(sexp_obj) == "string") {
+          std::string inner_data = sublist[inner_name];
+          ID = inner_data;
+          INNER_map["id"] = "\"id\":\"" + inner_data + "\"";
+        }
+        else if (DATA_TYPE(sexp_obj) == "int") {
+          int inner_data = sublist[inner_name];
+          std::string conv_to_str = std::to_string(inner_data);
+          ID = conv_to_str;
+          INNER_map["id"] = "\"id\":" + conv_to_str;
+        }
+        else {
+          Rcpp::stop("In case that the name of the input object equals to 'id' then it MUST be either a character string OR an integer! Sublist:" + std::to_string(i+1) + " id:" + std::to_string(j+1));
+        }
+        if (verbose) Rcpp::Rcout << "Input Feature: " << i+1 << "  --  'id' attribute-NAME: '" << ID << "'" << std::endl;
+      }
+      else if (inner_name == "properties") {
+
+        if (DATA_TYPE(sexp_obj) == "list") {
+
+          Rcpp::List inner_props = sublist[inner_name];
+          Rcpp::CharacterVector nams_props = inner_props.names();
+          std::vector<std::string> props_vec;
+
+          for (unsigned int k = 0; k < nams_props.size(); k++) {
+
+            std::string inner_name_props = Rcpp::as<std::string>(nams_props[k]);
+            SEXP sexp_prop = inner_props[inner_name_props];
+            std::string tmp_prop;
+
+            if (DATA_TYPE(sexp_prop) == "string") {
+              std::string inner_prop_str = inner_props[inner_name_props];
+              tmp_prop = "\"" + inner_name_props + "\"" + ":" + "\"" + inner_prop_str + "\"";
+            }
+            else if (DATA_TYPE(sexp_prop) == "double") {
+              double tmp_double = inner_props[inner_name_props];
+              tmp_prop = "\"" + inner_name_props + "\"" + ":" + std::to_string(tmp_double);
+            }
+            else if (DATA_TYPE(sexp_prop) == "int") {
+              int tmp_int = inner_props[inner_name_props];
+              tmp_prop = "\"" + inner_name_props + "\"" + ":" + std::to_string(tmp_int);
+            }
+            else {
+              Rcpp::stop("In case that the name of the input object equals to 'properties' then each item in 'properties' MUST be of type: 'string', 'double' or 'int'! Sublist:" + std::to_string(i+1) + " properties:" + std::to_string(j+1) + " properties-item:" + std::to_string(k+1));
+            }
+
+            if (k != nams_props.size() - 1) {                                // add trailing comma except for the last item
+              tmp_prop += ", ";
+            }
+            props_vec.push_back(tmp_prop);
+          }
+
+          std::string props_out;
+          for (unsigned int t = 0; t < props_vec.size(); t++) {
+            if (t == 0) {
+              props_out += "{";                                              // add an opening curly brace at the beginning
+            }
+
+            props_out += props_vec[t];                                       // in any case add the item to the string
+
+            if (t == props_vec.size() - 1) {
+              props_out += "}";                                              // add a closing curly brace at the end
+            }
+          }
+          INNER_map["properties"] = "\"properties\":" + props_out;
+        }
+        else {
+          Rcpp::stop("In case that the name of the input object equals to 'properties' then it MUST be a list object! Sublist:" + std::to_string(i+1) + " properties:" + std::to_string(j+1));
+        }
+      }
+      else if (inner_name == "geometry") {
+
+        std::string type_geom;
+        std::string coords;
+
+        if (DATA_TYPE(sexp_obj) == "list") {
+          Rcpp::List inner_geom = sublist[inner_name];
+          Rcpp::CharacterVector nams_geom = inner_geom.names();
+
+          for (unsigned int s = 0; s < nams_geom.size(); s++) {
+
+            std::string inner_name_geom = Rcpp::as<std::string>(nams_geom[s]);
+            SEXP sexp_geom = inner_geom[inner_name_geom];
+
+            if (nams_geom[s] == "type") {
+              std::string tmp_geom_type = inner_geom[inner_name_geom];
+
+              if (DATA_TYPE(sexp_geom) == "string") {                       // account for all cases: 'Polygon', 'POLYGON', 'MultiPolygon', 'MULTIPOLYGON'
+                if (tmp_geom_type == "Polygon") {
+                  type_geom = "\"type\":\"Polygon\"";
+                }
+                else if (tmp_geom_type == "POLYGON") {
+                  type_geom = "\"type\":\"POLYGON\"";
+                }
+                else if (tmp_geom_type == "MultiPolygon") {
+                  type_geom = "\"type\":\"MultiPolygon\"";
+                }
+                else if (tmp_geom_type == "MULTIPOLYGON") {
+                  type_geom = "\"type\":\"MULTIPOLYGON\"";
+                }
+                else {
+                  Rcpp::stop("In case that the name of the input object equals to 'geometry' then the 'type' MUST be either a 'Polygon' or a 'MultiPolygon'! Sublist:" + std::to_string(i+1) + " geometry:" + std::to_string(j+1));
+                }
+              }
+              else {
+                Rcpp::stop("In case that the name of the input object equals to 'geometry' then the 'type' MUST be either a character string! Sublist:" + std::to_string(i+1) + " geometry:" + std::to_string(j+1));
+              }
+            }
+            else if (nams_geom[s] == "coordinates") {
+
+              if (DATA_TYPE(sexp_geom) == "list") {
+
+                Rcpp::List geom_lst = inner_geom[inner_name_geom];
+
+                if (geom_lst.size() == 1) {                                                                      // 1st. case: If the list is of length 1, I expect that the Geometry is a Polygon with Interior rings (such as Countries with enclaves, see South Africa & Lesotho or Italy & (Vatican, San Marino)). This list will include 2 or more numeric matrices.
+
+                  coords = Polygon_with_interior_rings(geom_lst, i, verbose);
+                }
+                else {                                                                                           // 2nd. case: Here I expect that the Geometry is a Multipolygon (a list of length > 1, where each sublist is a numeric matrix)
+
+                  if (verbose) Rcpp::Rcout << "Input Feature: " << i+1 << "  --  MULTIPOLYGON!!" << std::endl;
+
+                  for (unsigned int z = 0; z < geom_lst.size(); z++) {
+
+                    SEXP sexp_inner_geom = geom_lst[z];
+
+                    std::string geom_str_poly;
+
+                    if (DATA_TYPE(sexp_inner_geom) == "list") {
+
+                      geom_str_poly = Polygon_with_interior_rings(geom_lst, i, verbose);
+                    }
+                    else if (DATA_TYPE(sexp_inner_geom) == "NUMERIC_matrix_array_vector") {
+
+                      geom_str_poly = inner_coords(geom_lst, z, false);
+                    }
+                    else {
+                      Rcpp::stop("Invalid Geometry object in case of MULTIPOLYGON! It must be either of type 'list' or 'numeric matrix'!");
+                    }
+
+                    if (z == 0) {
+                      coords += "[";
+                    }
+                    if (z != geom_lst.size() - 1) {
+                      coords += geom_str_poly + ",";
+                    }
+                    else {
+                      coords += geom_str_poly;
+                    }
+                    if (z == geom_lst.size() - 1) {
+                      coords += "]";
+                    }
+                  }
+                }
+              }
+              else if (DATA_TYPE(sexp_geom) == "NUMERIC_matrix_array_vector") {
+
+                if (verbose) Rcpp::Rcout << "Input Feature: " << i+1 << "  --  POLYGON WITHOUT INTERIOR Rings!" << std::endl;
+
+                Rcpp::NumericMatrix geom_mt_single = Rcpp::as<Rcpp::NumericMatrix>(inner_geom[inner_name_geom]);             // this matrix will have 2 columns (longitude and latitude)
+                std::string geom_str_poly_single;
+
+                for (int w1 = 0; w1 < geom_mt_single.nrow(); w1++) {
+
+                  Rcpp::NumericVector tmp_inner = geom_mt_single.row(w1);
+
+                  if (tmp_inner.size() != 2) {
+                    Rcpp::stop("The input data MUST have 2 columns ('latitude' and 'longitude')!");
+                  }
+
+                  double first_item1 = tmp_inner[0];
+                  double second_item1 = tmp_inner[1];
+
+                  if (w1 == 0) {
+                    coords += "[[";
+                  }
+
+                  coords += "[" + std::to_string(first_item1) + "," + std::to_string(second_item1) + "]";
+
+                  if (w1 < geom_mt_single.nrow() - 1) {
+                    coords += ",";
+                  }
+                  if (w1 == geom_mt_single.nrow() - 1) {
+                    coords += "]]";
+                  }
+                }
+              }
+              else {
+                Rcpp::stop("In case that the name of the input object equals to 'geometry' then the 'coordinates' attribute MUST be either a list OR a NUMERIC matrix (of type double because the coordinates are normally latitudes and longitudes)! Sublist:" + std::to_string(i+1) + " geometry:" + std::to_string(j+1));
+              }
+            }
+            else {
+              Rcpp::stop("In case that the name of the input object equals to 'geometry' then it MUST be a list object! Sublist:" + std::to_string(i+1) + " geometry:" + std::to_string(j+1));
+            }
+          }
+        }
+        else {
+          Rcpp::stop("In case that the name of the input object equals to 'geometry' then it MUST be a list object! Sublist:" + std::to_string(i+1) + " geometry:" + std::to_string(j+1));
+        }
+
+        INNER_map["geometry"] = "\"geometry\":{" + type_geom + ", \"coordinates\":" + coords + "}";
+      }
+    }
+
+    OUTER_map[i] = INNER_map;
+  }
+
+  std::string feature_collection_str = "{\"type\":\"FeatureCollection\",\"features\":[\n";
+
+  for(unsigned int iter = 0; iter < OUTER_map.size(); iter++) {
+
+    std::map<std::string, std::string> this_map = OUTER_map[iter];
+
+    std::string this_inner_map = "{";
+
+    unsigned int count = 0;
+
+    for(auto iter_in : this_map) {
+
+      if (count < this_map.size() - 1) {
+        this_inner_map += iter_in.second + ", ";
+      }
+      else {
+        this_inner_map += iter_in.second;
+      }
+      count += 1;
+    }
+
+    this_inner_map += "}";
+
+    if (iter != OUTER_map.size() - 1) {
+      this_inner_map += ",\n";
+    }
+
+    feature_collection_str += this_inner_map;
+  }
+
+  feature_collection_str += "]}";
+
+
+  if (path_to_file != "") {
+
+    std::ofstream out(path_to_file);
+    out << feature_collection_str;
+    out.close();
+  }
+
+  return feature_collection_str;
 }
 
 

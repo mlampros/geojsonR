@@ -824,7 +824,6 @@ testthat::test_that("in case that the 'OUTPUT_FILE' already exists it returns a 
 #===========================================================================
 
 
-
 testthat::test_that("it throws an error in case that the json object includes an invalid json data type ( valid json-objects : 'string', 'number', 'a JSON object', 'array', 'boolean', 'null' )", {
 
   char_str = '{"invalid_data": NaN, "valid_data": 1}'              # NaN returns NULL
@@ -834,4 +833,69 @@ testthat::test_that("it throws an error in case that the json object includes an
 
 
 #===========================================================================
+
+
+#----------------------------------------------------
+# 'save_R_list_Features_2_FeatureCollection' function
+#----------------------------------------------------
+
+
+testthat::test_that("the 'save_R_list_Features_2_FeatureCollection' function works as expected (Be aware that the sample input matrices MUST have 2 columns to resemble lat-lon values, otherwise an error will be raised)", {
+  
+  
+  polygon_WITHOUT_interior = list(type ="Feature",
+                                  id = 1L,
+                                  properties = list(prop1 = 'polygon-without', prop2 = 1.0234),
+                                  geometry = list(type = 'Polygon',
+                                                  coordinates = matrix(runif(20), nrow = 10, ncol = 2)))
+  
+  polygon_WITH_interior = list(type ="Feature",
+                                  id = 2L,
+                                  properties = list(prop1 = 'polygon-with', prop2 = 4.892),
+                                  geometry = list(type = 'Polygon',
+                                                  coordinates = list(list(matrix(runif(20), nrow = 10, ncol = 2),
+                                                                          matrix(runif(8), nrow = 4, ncol = 2)))))                  # a polygon with interior rings is a list of length 1 which includes 2 or more matrices
+  
+  multipolygon_WITHOUT_interior = list(type ="Feature",
+                                       id = 3L,
+                                       properties = list(prop1 = 'multipolygon-without', prop2 = 6.0987),
+                                       geometry = list(type = 'MultiPolygon',
+                                                       coordinates = list(matrix(runif(20), nrow = 10, ncol = 2),
+                                                                          matrix(runif(20), nrow = 10, ncol = 2))))
+  
+  multipolygon_WITH_interior = list(type ="Feature",
+                                    id = 4L,
+                                    properties = list(prop1 = 'multipolygon-with', prop2 = 9.337),
+                                    geometry = list(type = 'MultiPolygon',
+                                                    coordinates = list(list(matrix(runif(20), nrow = 10, ncol = 2),                 # one or more polygons with interior rings
+                                                                            matrix(runif(8), nrow = 4, ncol = 2)),
+                                                                       matrix(runif(20), nrow = 10, ncol = 2),                      # one or more polygons without interior rings
+                                                                       matrix(runif(20), nrow = 10, ncol = 2))))
+  
+  list_features = list(polygon_WITHOUT_interior,
+                       polygon_WITH_interior,
+                       multipolygon_WITHOUT_interior,
+                       multipolygon_WITH_interior)
+  
+  path_feat_col = tempfile(fileext = '.geojson')
+  
+  res = save_R_list_Features_2_FeatureCollection(input_list = list_features,
+                                                 path_to_file = path_feat_col,
+                                                 verbose = TRUE)
+  
+  res_load = FROM_GeoJson_Schema(url_file_string = path_feat_col)
+  
+  prop_names = unlist(lapply(res_load$features, function(x) x$properties$prop1))
+  
+  feat_nams = c("geometry", "id", "properties", "type")
+  
+  plg_wo_int = all.equal(polygon_WITHOUT_interior[feat_nams], res_load$features[[which(prop_names == 'polygon-without')]][feat_nams], tol = 0.000001)      # add the tolerance parameter for differences that might arise due to save and load procedure
+  plg_with_int = all.equal(polygon_WITH_interior[feat_nams], res_load$features[[which(prop_names == 'polygon-with')]][feat_nams], tol = 0.000001) 
+  mlt_plg_wo_int = all.equal(multipolygon_WITHOUT_interior[feat_nams], res_load$features[[which(prop_names == 'multipolygon-without')]][feat_nams], tol = 0.000001) 
+  mlt_plg_with_int = all.equal(multipolygon_WITH_interior[feat_nams], res_load$features[[which(prop_names == 'multipolygon-with')]][feat_nams], tol = 0.000001) 
+  
+  if (file.exists(path_feat_col)) file.remove(path_feat_col)
+
+  testthat::expect_true( all(c(plg_wo_int, plg_with_int, mlt_plg_wo_int, mlt_plg_with_int)) )
+})
 

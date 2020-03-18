@@ -29,6 +29,22 @@ merge_json <- function(input_folder, output_file, concat_delimiter = "\n", verbo
     invisible(.Call(`_geojsonR_merge_json`, input_folder, output_file, concat_delimiter, verbose))
 }
 
+DATA_TYPE <- function(sublist) {
+    .Call(`_geojsonR_DATA_TYPE`, sublist)
+}
+
+inner_coords <- function(geom_lst, z, polygon_interior = FALSE) {
+    .Call(`_geojsonR_inner_coords`, geom_lst, z, polygon_interior)
+}
+
+Polygon_with_interior_rings <- function(geom_lst, i, verbose) {
+    .Call(`_geojsonR_Polygon_with_interior_rings`, geom_lst, i, verbose)
+}
+
+SAVE_R_list_Features_2_FeatureCollection <- function(x, path_to_file = "", verbose = FALSE) {
+    .Call(`_geojsonR_SAVE_R_list_Features_2_FeatureCollection`, x, path_to_file, verbose)
+}
+
 export_To_GeoJson <- function(geometry_object, data_POINTS, data_ARRAYS, data_ARRAY_ARRAYS, data_POLYGON_ARRAYS, stringify = FALSE) {
     .Call(`_geojsonR_export_To_GeoJson`, geometry_object, data_POINTS, data_ARRAYS, data_ARRAY_ARRAYS, data_POLYGON_ARRAYS, stringify)
 }

@@ -4,19 +4,15 @@
 \name{TO_GeoJson}
 \alias{TO_GeoJson}
 \title{converts data to a GeoJson object}
-\format{An object of class \code{R6ClassGenerator} of length 24.}
 \usage{
 # utl <- TO_GeoJson$new()
-}
-\arguments{
-\item{data}{a list specifying the geojson geometry object}
-
-\item{stringify}{either TRUE or FALSE, specifying if the output should also include a geojson-dump (as a character string)}
 }
 \value{
 a List
 }
 \description{
+converts data to a GeoJson object
+
 converts data to a GeoJson object
 }
 \section{Methods}{
@@ -227,4 +223,197 @@ feature_collection_obj
 cat(feature_collection_obj$json_dump)
 
 }
-\keyword{datasets}
+\section{Methods}{
+\subsection{Public methods}{
+\itemize{
+\item \href{#method-new}{\code{TO_GeoJson$new()}}
+\item \href{#method-Point}{\code{TO_GeoJson$Point()}}
+\item \href{#method-MultiPoint}{\code{TO_GeoJson$MultiPoint()}}
+\item \href{#method-LineString}{\code{TO_GeoJson$LineString()}}
+\item \href{#method-MultiLineString}{\code{TO_GeoJson$MultiLineString()}}
+\item \href{#method-Polygon}{\code{TO_GeoJson$Polygon()}}
+\item \href{#method-MultiPolygon}{\code{TO_GeoJson$MultiPolygon()}}
+\item \href{#method-GeometryCollection}{\code{TO_GeoJson$GeometryCollection()}}
+\item \href{#method-Feature}{\code{TO_GeoJson$Feature()}}
+\item \href{#method-FeatureCollection}{\code{TO_GeoJson$FeatureCollection()}}
+\item \href{#method-clone}{\code{TO_GeoJson$clone()}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-new"></a>}}
+\subsection{Method \code{new()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$new()}\if{html}{\out{</div>}}
+}
+
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Point"></a>}}
+\subsection{Method \code{Point()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$Point(data, stringify = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{data}}{a list specifying the geojson geometry object}
+
+\item{\code{stringify}}{either TRUE or FALSE, specifying if the output should also include a geojson-dump (as a character string)}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiPoint"></a>}}
+\subsection{Method \code{MultiPoint()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$MultiPoint(data, stringify = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{data}}{a list specifying the geojson geometry object}
+
+\item{\code{stringify}}{either TRUE or FALSE, specifying if the output should also include a geojson-dump (as a character string)}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-LineString"></a>}}
+\subsection{Method \code{LineString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$LineString(data, stringify = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{data}}{a list specifying the geojson geometry object}
+
+\item{\code{stringify}}{either TRUE or FALSE, specifying if the output should also include a geojson-dump (as a character string)}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiLineString"></a>}}
+\subsection{Method \code{MultiLineString()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$MultiLineString(data, stringify = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{data}}{a list specifying the geojson geometry object}
+
+\item{\code{stringify}}{either TRUE or FALSE, specifying if the output should also include a geojson-dump (as a character string)}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Polygon"></a>}}
+\subsection{Method \code{Polygon()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$Polygon(data, stringify = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{data}}{a list specifying the geojson geometry object}
+
+\item{\code{stringify}}{either TRUE or FALSE, specifying if the output should also include a geojson-dump (as a character string)}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-MultiPolygon"></a>}}
+\subsection{Method \code{MultiPolygon()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$MultiPolygon(data, stringify = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{data}}{a list specifying the geojson geometry object}
+
+\item{\code{stringify}}{either TRUE or FALSE, specifying if the output should also include a geojson-dump (as a character string)}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-GeometryCollection"></a>}}
+\subsection{Method \code{GeometryCollection()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$GeometryCollection(data, stringify = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{data}}{a list specifying the geojson geometry object}
+
+\item{\code{stringify}}{either TRUE or FALSE, specifying if the output should also include a geojson-dump (as a character string)}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-Feature"></a>}}
+\subsection{Method \code{Feature()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$Feature(data, stringify = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{data}}{a list specifying the geojson geometry object}
+
+\item{\code{stringify}}{either TRUE or FALSE, specifying if the output should also include a geojson-dump (as a character string)}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-FeatureCollection"></a>}}
+\subsection{Method \code{FeatureCollection()}}{
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$FeatureCollection(data, stringify = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{data}}{a list specifying the geojson geometry object}
+
+\item{\code{stringify}}{either TRUE or FALSE, specifying if the output should also include a geojson-dump (as a character string)}
+}
+\if{html}{\out{</div>}}
+}
+}
+\if{html}{\out{<hr>}}
+\if{html}{\out{<a id="method-clone"></a>}}
+\subsection{Method \code{clone()}}{
+The objects of this class are cloneable with this method.
+\subsection{Usage}{
+\if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$clone(deep = FALSE)}\if{html}{\out{</div>}}
+}
+
+\subsection{Arguments}{
+\if{html}{\out{<div class="arguments">}}
+\describe{
+\item{\code{deep}}{Whether to make a deep clone.}
+}
+\if{html}{\out{</div>}}
+}
+}
+}

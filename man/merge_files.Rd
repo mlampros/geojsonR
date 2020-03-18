@@ -4,8 +4,12 @@
 \alias{merge_files}
 \title{merge json files (or any kind of text files) from a directory}
 \usage{
-merge_files(INPUT_FOLDER, OUTPUT_FILE, CONCAT_DELIMITER = "\\n",
-  verbose = FALSE)
+merge_files(
+  INPUT_FOLDER,
+  OUTPUT_FILE,
+  CONCAT_DELIMITER = "\\n",
+  verbose = FALSE
+)
 }
 \arguments{
 \item{INPUT_FOLDER}{a character string specifying a path to the input folder}

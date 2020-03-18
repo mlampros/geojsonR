@@ -94,6 +94,56 @@ BEGIN_RCPP
     return R_NilValue;
 END_RCPP
 }
+// DATA_TYPE
+std::string DATA_TYPE(SEXP sublist);
+RcppExport SEXP _geojsonR_DATA_TYPE(SEXP sublistSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< SEXP >::type sublist(sublistSEXP);
+    rcpp_result_gen = Rcpp::wrap(DATA_TYPE(sublist));
+    return rcpp_result_gen;
+END_RCPP
+}
+// inner_coords
+std::string inner_coords(Rcpp::List geom_lst, int z, bool polygon_interior);
+RcppExport SEXP _geojsonR_inner_coords(SEXP geom_lstSEXP, SEXP zSEXP, SEXP polygon_interiorSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::List >::type geom_lst(geom_lstSEXP);
+    Rcpp::traits::input_parameter< int >::type z(zSEXP);
+    Rcpp::traits::input_parameter< bool >::type polygon_interior(polygon_interiorSEXP);
+    rcpp_result_gen = Rcpp::wrap(inner_coords(geom_lst, z, polygon_interior));
+    return rcpp_result_gen;
+END_RCPP
+}
+// Polygon_with_interior_rings
+std::string Polygon_with_interior_rings(Rcpp::List geom_lst, int i, bool verbose);
+RcppExport SEXP _geojsonR_Polygon_with_interior_rings(SEXP geom_lstSEXP, SEXP iSEXP, SEXP verboseSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::List >::type geom_lst(geom_lstSEXP);
+    Rcpp::traits::input_parameter< int >::type i(iSEXP);
+    Rcpp::traits::input_parameter< bool >::type verbose(verboseSEXP);
+    rcpp_result_gen = Rcpp::wrap(Polygon_with_interior_rings(geom_lst, i, verbose));
+    return rcpp_result_gen;
+END_RCPP
+}
+// SAVE_R_list_Features_2_FeatureCollection
+std::string SAVE_R_list_Features_2_FeatureCollection(Rcpp::List x, std::string path_to_file, bool verbose);
+RcppExport SEXP _geojsonR_SAVE_R_list_Features_2_FeatureCollection(SEXP xSEXP, SEXP path_to_fileSEXP, SEXP verboseSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::List >::type x(xSEXP);
+    Rcpp::traits::input_parameter< std::string >::type path_to_file(path_to_fileSEXP);
+    Rcpp::traits::input_parameter< bool >::type verbose(verboseSEXP);
+    rcpp_result_gen = Rcpp::wrap(SAVE_R_list_Features_2_FeatureCollection(x, path_to_file, verbose));
+    return rcpp_result_gen;
+END_RCPP
+}
 // export_To_GeoJson
 Rcpp::List export_To_GeoJson(std::string geometry_object, std::vector<double> data_POINTS, std::vector<std::vector<double>> data_ARRAYS, std::vector<std::vector<std::vector<double>>> data_ARRAY_ARRAYS, std::vector<std::vector<std::vector<std::vector<double>>>> data_POLYGON_ARRAYS, bool stringify);
 RcppExport SEXP _geojsonR_export_To_GeoJson(SEXP geometry_objectSEXP, SEXP data_POINTSSEXP, SEXP data_ARRAYSSEXP, SEXP data_ARRAY_ARRAYSSEXP, SEXP data_POLYGON_ARRAYSSEXP, SEXP stringifySEXP) {

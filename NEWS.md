@@ -1,4 +1,9 @@
 
+## geojsonR 1.0.8
+
+* I've added the *save_R_list_Features_2_FeatureCollection* function and I've modified the *typeof_item* method of the *GeoJson_Collections* C++ class to accept also input objects of type integer.
+
+
 ## geojsonR 1.0.7
 
 * I've added the *write_path* and *verbose* parameters to the *Features_2Collection* function

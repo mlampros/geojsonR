@@ -4,8 +4,12 @@
 \alias{FROM_GeoJson}
 \title{reads GeoJson data}
 \usage{
-FROM_GeoJson(url_file_string, Flatten_Coords = FALSE,
-  Average_Coordinates = FALSE, To_List = FALSE)
+FROM_GeoJson(
+  url_file_string,
+  Flatten_Coords = FALSE,
+  Average_Coordinates = FALSE,
+  To_List = FALSE
+)
 }
 \arguments{
 \item{url_file_string}{a string specifying the input path to a file OR a geojson object (in form of a character string) OR a valid url (beginning with 'http..') pointing to a geojson object}

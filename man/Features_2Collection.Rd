@@ -4,8 +4,12 @@
 \alias{Features_2Collection}
 \title{creates a FeatureCollection dump from multiple Feature geojson objects}
 \usage{
-Features_2Collection(Features_files_vec, bbox_vec = NULL,
-  write_path = NULL, verbose = FALSE)
+Features_2Collection(
+  Features_files_vec,
+  bbox_vec = NULL,
+  write_path = NULL,
+  verbose = FALSE
+)
 }
 \arguments{
 \item{Features_files_vec}{a character vector specifying paths to files (Feature geojson objects)}

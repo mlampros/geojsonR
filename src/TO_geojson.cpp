@@ -225,6 +225,12 @@ public:
           double tmp_dbl = Rcpp::as<double>(rec_prop[f]);
 
           properties_OBJ[tmp_nam] = json11::Json(tmp_dbl);}
+        
+        else if (TYPEOF(rec_prop[f]) == INTSXP) {
+          
+          int tmp_dbl_int = Rcpp::as<int>(rec_prop[f]);
+          
+          properties_OBJ[tmp_nam] = json11::Json(tmp_dbl_int);}
 
         else if (TYPEOF(rec_prop[f]) == LGLSXP) {
 
@@ -262,8 +268,13 @@ public:
 
           std::vector<double> arr_vec = Rcpp::as<std::vector<double>>(rec_prop[f]);
 
-          properties_OBJ[tmp_nam] = json11::Json(arr_vec);
-        }
+          properties_OBJ[tmp_nam] = json11::Json(arr_vec);}
+        
+        else if (TYPEOF(rec_prop[f]) == INTSXP) {
+          
+          std::vector<int> arr_vec_int = Rcpp::as<std::vector<int>>(rec_prop[f]);
+          
+          properties_OBJ[tmp_nam] = json11::Json(arr_vec_int);}
 
         else if (TYPEOF(rec_prop[f]) == VECSXP) {
 

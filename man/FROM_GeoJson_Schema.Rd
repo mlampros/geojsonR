@@ -4,8 +4,12 @@
 \alias{FROM_GeoJson_Schema}
 \title{reads GeoJson data using a one-word-schema}
 \usage{
-FROM_GeoJson_Schema(url_file_string, geometry_name = "",
-  Average_Coordinates = FALSE, To_List = FALSE)
+FROM_GeoJson_Schema(
+  url_file_string,
+  geometry_name = "",
+  Average_Coordinates = FALSE,
+  To_List = FALSE
+)
 }
 \arguments{
 \item{url_file_string}{a string specifying the input path to a file OR a geojson object (in form of a character string) OR a valid url (beginning with 'http..') pointing to a geojson object}

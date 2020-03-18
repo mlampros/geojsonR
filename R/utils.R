@@ -564,6 +564,102 @@ Features_2Collection = function(Features_files_vec, bbox_vec = NULL, write_path 
 
 
 
+#' creates a FeatureCollection from R list objects ( see the details section about the limitations of this function )
+#'
+#'
+#' @param input_list a list object that includes 1 or more geojson R list Features
+#' @param path_to_file either an empty string ("") or a valid path to a file where the output FeatureCollection will be saved
+#' @param verbose a boolean. If TRUE then information will be printed out in the console
+#' @return a FeatureCollection in form of a character string
+#' @return a FeatureCollection saved in a file
+#' @details
+#'
+#' \itemize{
+#'     \item it allows the following attributes: \emph{'type'}, \emph{'id'}, \emph{'properties'} and \emph{'geometry'}
+#'     \item it allows only coordinates of type \emph{'Polygon'} or \emph{'MultiPolygon'} to be processed. In case of a \emph{'Polygon'} there are 2 cases: (a.) Polygon WITHOUT interior rings (a numeric matrix is expected) and (b.) Polygon WITH interior rings (a list of numeric matrices is expected). See the test-cases if you receive an error for the correct format of the input data. In case of a \emph{'MultiPolygon'} both Polygons with OR without interior rings can be included. Multipolygons are of the form: list of lists where each SUBLIST can be either a numeric matrix (Polygon without interior rings) or a list (Polygon with interior rings)
+#'     \item the \emph{properties} attribute must be a list that can take only \emph{character strings}, \emph{numeric} and \emph{integer} values of SIZE 1. In case that any of the input properties is of SIZE > 1 then it will throw an error.
+#' }
+#'
+#' The \emph{input_list} parameter can be EITHER created from scratch OR GeoJson Features (in form of a FeatureCollection) can be loaded in R and modified so that this list can be processed by this function
+#'
+#' @export
+#' @examples
+#'
+#' \dontrun{
+#'
+#' library(geojsonR)
+#'
+#' #------------------------------------------------
+#' # valid example that will save the data to a file
+#' #------------------------------------------------
+#'
+#' Feature1 = list(type ="Feature",
+#'                 id = 1L,
+#'                 properties = list(prop1 = 'id', prop2 = 1.0234),
+#'                 geometry = list(type = 'Polygon',
+#'                                 coordinates = matrix(runif(20), nrow = 10, ncol = 2)))
+#'
+#' Feature2 = list(type ="Feature",
+#'                 id = 2L,
+#'                 properties = list(prop1 = 'non-id', prop2 = 6.0987),
+#'                 geometry = list(type = 'MultiPolygon',
+#'                                 coordinates = list(matrix(runif(20), nrow = 10, ncol = 2),
+#'                                                   matrix(runif(20), nrow = 10, ncol = 2))))
+#'
+#' list_features = list(Feature1, Feature2)
+#'
+#' path_feat_col = tempfile(fileext = '.geojson')
+#'
+#' res = save_R_list_Features_2_FeatureCollection(input_list = list_features,
+#'                                                path_to_file = path_feat_col,
+#'                                                verbose = TRUE)
+#'
+#' #-------------------------------------
+#' # validate that the file can be loaded
+#' #-------------------------------------
+#'
+#' res_load = FROM_GeoJson_Schema(url_file_string = path_feat_col)
+#' str(res_load)
+#'
+#'
+#' #----------------------------------------------------
+#' # INVALID data types such as NA's will throw an ERROR
+#' #----------------------------------------------------
+#'
+#'
+#' Feature1 = list(type ="Feature",
+#'                 id = 1L,
+#'                 properties = list(prop1 = NA, prop2 = 1.0234),
+#'                 geometry = list(type = 'Polygon',
+#'                                 coordinates = matrix(runif(20), nrow = 10, ncol = 2)))
+#'
+#' list_features = list(Feature1, Feature2)
+#'
+#' path_feat_col = tempfile(fileext = '.geojson')
+#'
+#' res = save_R_list_Features_2_FeatureCollection(input_list = list_features,
+#'                                                path_to_file = path_feat_col,
+#'                                                verbose = TRUE)
+#' }
+#'
+
+save_R_list_Features_2_FeatureCollection = function(input_list,
+                                                    path_to_file = "",
+                                                    verbose = FALSE) {
+
+  if (length(input_list) < 1) {
+    stop("The 'input_list' parameter must be at least of length 1!", call. = F)
+  }
+
+  res = SAVE_R_list_Features_2_FeatureCollection(x = input_list,
+                                                 path_to_file = path_to_file,
+                                                 verbose = verbose)
+  return(res)
+}
+
+
+
+
 #' secondary function for shiny Applications
 #'
 #' @param input_file a character string specifying a path to a file
