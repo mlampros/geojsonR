@@ -1,5 +1,6 @@
 ^Dockerfile$
-^.travis.yml$
-^appveyor\.yml$
 ^.git$
 ^.github$
+^\.ccache$
+^\.github$
+^tic\.R$

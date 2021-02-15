@@ -1,8 +1,7 @@
 
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/geojsonR)](http://cran.r-project.org/package=geojsonR)
-[![Travis-CI Build Status](https://travis-ci.org/mlampros/geojsonR.svg?branch=master)](https://travis-ci.org/mlampros/geojsonR)
+[![tic](https://github.com/mlampros/geojsonR/workflows/tic/badge.svg?branch=master)](https://github.com/mlampros/geojsonR/actions)
 [![codecov.io](https://codecov.io/github/mlampros/geojsonR/coverage.svg?branch=master)](https://codecov.io/github/mlampros/geojsonR?branch=master)
-[![AppVeyor build status](https://ci.appveyor.com/api/projects/status/github/mlampros/geojsonR?branch=master&svg=true)](https://ci.appveyor.com/project/mlampros/geojsonR/branch/master)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/geojsonR)](http://cran.r-project.org/package=geojsonR)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/geojsonR?color=blue)](http://www.r-pkg.org/pkg/geojsonR)
 <a href="https://www.buymeacoffee.com/VY0x8snyh" target="_blank"><img src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee" height="21px" ></a>
 [![Dependencies](https://tinyverse.netlify.com/badge/geojsonR)](https://cran.r-project.org/package=geojsonR)
