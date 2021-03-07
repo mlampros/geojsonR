@@ -1,4 +1,10 @@
 
+
+## geojsonR 1.0.9
+
+* I've adjusted the tolerance value in the test-case of the *save_R_list_Features_2_FeatureCollection* function (file 'test-geojson.R') because it threw an error in 2 operating systems. I also replaced the invalid url's in the vignette.
+
+
 ## geojsonR 1.0.8
 
 * I've added the *save_R_list_Features_2_FeatureCollection* function and I've modified the *typeof_item* method of the *GeoJson_Collections* C++ class to accept also input objects of type integer.

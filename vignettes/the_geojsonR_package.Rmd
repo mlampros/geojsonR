@@ -437,7 +437,7 @@ A secondary thought about the *geojsonR* package was to make some of its functio
 * shiny::runGitHub('shiny-server', 'mlampros', subdir = 'geocoding_nominatim')
 * shiny::runGitHub('shiny-server', 'mlampros', subdir = 'geocoding_nominatim_reverse')
 
-or follow the web-links using the [shinyapps.io](http://www.shinyapps.io/) service,
+or follow the web-links using the [shinyapps.io](https://www.shinyapps.io/) service,
 
 * https://lampros.shinyapps.io/shiny_geocoding/
 * https://lampros.shinyapps.io/shiny_geojson/
@@ -445,7 +445,7 @@ or follow the web-links using the [shinyapps.io](http://www.shinyapps.io/) servi
 
 The latter service is limited to 25 active hours per month (for free accounts), thus if the limit is exceeded then the applications won't be available to the end users.
 
-I won't go into detail about [shiny](https://shiny.rstudio.com/) and [leaflet](https://rstudio.github.io/leaflet/), because both packages are well documented and users can find information on how to include them in their projects. On the other hand, "*Nominatim* is a tool to search OpenStreetMap (OSM) data by name and address and to generate synthetic addresses of OSM points (reverse geocoding). It can be found at *nominatim.openstreetmap.org*. Nominatim is also used as one of the sources for the search box on the OpenStreetMap home page. Several companies provide hosted instances of Nominatim that you can query via an API." More information on how to use *Nominatim* can be found at http://wiki.openstreetmap.org/wiki/Nominatim).
+I won't go into detail about [shiny](https://shiny.rstudio.com/) and [leaflet](https://rstudio.github.io/leaflet/), because both packages are well documented and users can find information on how to include them in their projects. On the other hand, "*Nominatim* is a tool to search OpenStreetMap (OSM) data by name and address and to generate synthetic addresses of OSM points (reverse geocoding). It can be found at *nominatim.openstreetmap.org*. Nominatim is also used as one of the sources for the search box on the OpenStreetMap home page. Several companies provide hosted instances of Nominatim that you can query via an API." More information on how to use *Nominatim* can be found at https://wiki.openstreetmap.org/wiki/Nominatim).
 
 <br>
 
