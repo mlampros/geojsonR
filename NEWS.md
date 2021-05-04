@@ -1,4 +1,9 @@
 
+## geojsonR 1.1.0
+
+* I've added the *CITATION* file in the *inst* directory listing all papers and software used in the *geojsonR* package
+* I've removed *Lazydata* from the DESCRIPTION file
+
 
 ## geojsonR 1.0.9
 

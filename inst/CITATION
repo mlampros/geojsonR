@@ -1,0 +1,21 @@
+citHeader("Please cite both the package and the original articles / software in your publications:")
+
+year <- sub("-.*", "", meta$Date)
+note <- sprintf("R package version %s", meta$Version)
+
+bibentry(
+  bibtype = "Manual",
+  title   = "{geojsonR}: A GeoJson Processing Toolkit",
+  author  = person("Lampros", "Mouselimis"),
+  year    = year,
+  note    = note,
+  url     = "https://CRAN.R-project.org/package=geojsonR"
+)
+
+bibentry(
+  bibtype = "Manual",
+  title   = "{json11}: A tiny JSON library for C++11, providing JSON parsing and serialization",
+  author  = person("Dropbox", "Inc"),
+  year    = "2013",
+  url     = "https://github.com/dropbox/json11"
+)
