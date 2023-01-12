@@ -1,13 +1,14 @@
 Package: geojsonR
 Type: Package
 Title: A GeoJson Processing Toolkit
-Version: 1.1.0
-Date: 2021-05-03
+Version: 1.1.1
+Date: 2023-01-12
 Authors@R: c( person(given = "Lampros", family = "Mouselimis", email = "mouselimislampros@gmail.com", role = c("aut", "cre"), comment = c(ORCID = "https://orcid.org/0000-0002-8024-1546")), person("Dropbox", "Inc", role = "cph"))
 BugReports: https://github.com/mlampros/geojsonR/issues
 URL: https://github.com/mlampros/geojsonR
-Description: Includes functions for processing GeoJson objects <https://en.wikipedia.org/wiki/GeoJSON> relying on 'RFC 7946' <https://tools.ietf.org/pdf/rfc7946.pdf>. The geojson encoding is based on 'json11', a tiny JSON library for 'C++11' <https://github.com/dropbox/json11>. Furthermore, the source code is exported in R through the 'Rcpp' and 'RcppArmadillo' packages.
+Description: Includes functions for processing GeoJson objects <https://en.wikipedia.org/wiki/GeoJSON> relying on 'RFC 7946' <https://datatracker.ietf.org/doc/pdf/rfc7946.pdf>. The geojson encoding is based on 'json11', a tiny JSON library for 'C++11' <https://github.com/dropbox/json11>. Furthermore, the source code is exported in R through the 'Rcpp' and 'RcppArmadillo' packages.
 License: MIT + file LICENSE
+Encoding: UTF-8
 Copyright: inst/COPYRIGHTS
 SystemRequirements: libarmadillo: apt-get install -y libarmadillo-dev (deb)
 Depends:
@@ -22,4 +23,4 @@ Suggests:
     knitr,
     rmarkdown
 VignetteBuilder: knitr
-RoxygenNote: 7.1.1
+RoxygenNote: 7.2.3

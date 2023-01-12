@@ -226,22 +226,22 @@ cat(feature_collection_obj$json_dump)
 \section{Methods}{
 \subsection{Public methods}{
 \itemize{
-\item \href{#method-new}{\code{TO_GeoJson$new()}}
-\item \href{#method-Point}{\code{TO_GeoJson$Point()}}
-\item \href{#method-MultiPoint}{\code{TO_GeoJson$MultiPoint()}}
-\item \href{#method-LineString}{\code{TO_GeoJson$LineString()}}
-\item \href{#method-MultiLineString}{\code{TO_GeoJson$MultiLineString()}}
-\item \href{#method-Polygon}{\code{TO_GeoJson$Polygon()}}
-\item \href{#method-MultiPolygon}{\code{TO_GeoJson$MultiPolygon()}}
-\item \href{#method-GeometryCollection}{\code{TO_GeoJson$GeometryCollection()}}
-\item \href{#method-Feature}{\code{TO_GeoJson$Feature()}}
-\item \href{#method-FeatureCollection}{\code{TO_GeoJson$FeatureCollection()}}
-\item \href{#method-clone}{\code{TO_GeoJson$clone()}}
+\item \href{#method-TO_GeoJson-new}{\code{TO_GeoJson$new()}}
+\item \href{#method-TO_GeoJson-Point}{\code{TO_GeoJson$Point()}}
+\item \href{#method-TO_GeoJson-MultiPoint}{\code{TO_GeoJson$MultiPoint()}}
+\item \href{#method-TO_GeoJson-LineString}{\code{TO_GeoJson$LineString()}}
+\item \href{#method-TO_GeoJson-MultiLineString}{\code{TO_GeoJson$MultiLineString()}}
+\item \href{#method-TO_GeoJson-Polygon}{\code{TO_GeoJson$Polygon()}}
+\item \href{#method-TO_GeoJson-MultiPolygon}{\code{TO_GeoJson$MultiPolygon()}}
+\item \href{#method-TO_GeoJson-GeometryCollection}{\code{TO_GeoJson$GeometryCollection()}}
+\item \href{#method-TO_GeoJson-Feature}{\code{TO_GeoJson$Feature()}}
+\item \href{#method-TO_GeoJson-FeatureCollection}{\code{TO_GeoJson$FeatureCollection()}}
+\item \href{#method-TO_GeoJson-clone}{\code{TO_GeoJson$clone()}}
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-new"></a>}}
-\if{latex}{\out{\hypertarget{method-new}{}}}
+\if{html}{\out{<a id="method-TO_GeoJson-new"></a>}}
+\if{latex}{\out{\hypertarget{method-TO_GeoJson-new}{}}}
 \subsection{Method \code{new()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$new()}\if{html}{\out{</div>}}
@@ -249,8 +249,8 @@ cat(feature_collection_obj$json_dump)
 
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Point"></a>}}
-\if{latex}{\out{\hypertarget{method-Point}{}}}
+\if{html}{\out{<a id="method-TO_GeoJson-Point"></a>}}
+\if{latex}{\out{\hypertarget{method-TO_GeoJson-Point}{}}}
 \subsection{Method \code{Point()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$Point(data, stringify = FALSE)}\if{html}{\out{</div>}}
@@ -267,8 +267,8 @@ cat(feature_collection_obj$json_dump)
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-MultiPoint"></a>}}
-\if{latex}{\out{\hypertarget{method-MultiPoint}{}}}
+\if{html}{\out{<a id="method-TO_GeoJson-MultiPoint"></a>}}
+\if{latex}{\out{\hypertarget{method-TO_GeoJson-MultiPoint}{}}}
 \subsection{Method \code{MultiPoint()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$MultiPoint(data, stringify = FALSE)}\if{html}{\out{</div>}}
@@ -285,8 +285,8 @@ cat(feature_collection_obj$json_dump)
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-LineString"></a>}}
-\if{latex}{\out{\hypertarget{method-LineString}{}}}
+\if{html}{\out{<a id="method-TO_GeoJson-LineString"></a>}}
+\if{latex}{\out{\hypertarget{method-TO_GeoJson-LineString}{}}}
 \subsection{Method \code{LineString()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$LineString(data, stringify = FALSE)}\if{html}{\out{</div>}}
@@ -303,8 +303,8 @@ cat(feature_collection_obj$json_dump)
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-MultiLineString"></a>}}
-\if{latex}{\out{\hypertarget{method-MultiLineString}{}}}
+\if{html}{\out{<a id="method-TO_GeoJson-MultiLineString"></a>}}
+\if{latex}{\out{\hypertarget{method-TO_GeoJson-MultiLineString}{}}}
 \subsection{Method \code{MultiLineString()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$MultiLineString(data, stringify = FALSE)}\if{html}{\out{</div>}}
@@ -321,8 +321,8 @@ cat(feature_collection_obj$json_dump)
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Polygon"></a>}}
-\if{latex}{\out{\hypertarget{method-Polygon}{}}}
+\if{html}{\out{<a id="method-TO_GeoJson-Polygon"></a>}}
+\if{latex}{\out{\hypertarget{method-TO_GeoJson-Polygon}{}}}
 \subsection{Method \code{Polygon()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$Polygon(data, stringify = FALSE)}\if{html}{\out{</div>}}
@@ -339,8 +339,8 @@ cat(feature_collection_obj$json_dump)
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-MultiPolygon"></a>}}
-\if{latex}{\out{\hypertarget{method-MultiPolygon}{}}}
+\if{html}{\out{<a id="method-TO_GeoJson-MultiPolygon"></a>}}
+\if{latex}{\out{\hypertarget{method-TO_GeoJson-MultiPolygon}{}}}
 \subsection{Method \code{MultiPolygon()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$MultiPolygon(data, stringify = FALSE)}\if{html}{\out{</div>}}
@@ -357,8 +357,8 @@ cat(feature_collection_obj$json_dump)
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-GeometryCollection"></a>}}
-\if{latex}{\out{\hypertarget{method-GeometryCollection}{}}}
+\if{html}{\out{<a id="method-TO_GeoJson-GeometryCollection"></a>}}
+\if{latex}{\out{\hypertarget{method-TO_GeoJson-GeometryCollection}{}}}
 \subsection{Method \code{GeometryCollection()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$GeometryCollection(data, stringify = FALSE)}\if{html}{\out{</div>}}
@@ -375,8 +375,8 @@ cat(feature_collection_obj$json_dump)
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-Feature"></a>}}
-\if{latex}{\out{\hypertarget{method-Feature}{}}}
+\if{html}{\out{<a id="method-TO_GeoJson-Feature"></a>}}
+\if{latex}{\out{\hypertarget{method-TO_GeoJson-Feature}{}}}
 \subsection{Method \code{Feature()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$Feature(data, stringify = FALSE)}\if{html}{\out{</div>}}
@@ -393,8 +393,8 @@ cat(feature_collection_obj$json_dump)
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-FeatureCollection"></a>}}
-\if{latex}{\out{\hypertarget{method-FeatureCollection}{}}}
+\if{html}{\out{<a id="method-TO_GeoJson-FeatureCollection"></a>}}
+\if{latex}{\out{\hypertarget{method-TO_GeoJson-FeatureCollection}{}}}
 \subsection{Method \code{FeatureCollection()}}{
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{TO_GeoJson$FeatureCollection(data, stringify = FALSE)}\if{html}{\out{</div>}}
@@ -411,8 +411,8 @@ cat(feature_collection_obj$json_dump)
 }
 }
 \if{html}{\out{<hr>}}
-\if{html}{\out{<a id="method-clone"></a>}}
-\if{latex}{\out{\hypertarget{method-clone}{}}}
+\if{html}{\out{<a id="method-TO_GeoJson-clone"></a>}}
+\if{latex}{\out{\hypertarget{method-TO_GeoJson-clone}{}}}
 \subsection{Method \code{clone()}}{
 The objects of this class are cloneable with this method.
 \subsection{Usage}{

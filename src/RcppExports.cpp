@@ -6,6 +6,11 @@
 
 using namespace Rcpp;
 
+#ifdef RCPP_USE_GLOBAL_ROSTREAM
+Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
+Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
+#endif
+
 // export_From_geojson
 Rcpp::List export_From_geojson(std::string input_file, bool flatten_coords, bool average_coordinates, bool to_list);
 RcppExport SEXP _geojsonR_export_From_geojson(SEXP input_fileSEXP, SEXP flatten_coordsSEXP, SEXP average_coordinatesSEXP, SEXP to_listSEXP) {

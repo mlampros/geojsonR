@@ -13,10 +13,10 @@ vignette: >
 
 "[GeoJSON](https://en.wikipedia.org/wiki/GeoJSON) is an open standard format designed for representing simple geographical features, along with their non-spatial attributes, based on JavaScript Object Notation. The features include points (therefore *addresses* and *locations*), line strings (therefore *streets*, *highways* and *boundaries*), polygons (*countries*, *provinces*, *tracts of land*), and multi-part collections of these types. GeoJSON features need not represent entities of the physical world only; *mobile routing* and *navigation apps*, for example, might describe their service coverage using GeoJSON. The GeoJSON format differs from other GIS standards in that it was written and is maintained not by a formal standards organization, but by an Internet working group of developers." <br>
 
-**geojsonR** relies mainly on [RFC 7946](https://tools.ietf.org/pdf/rfc7946.pdf), which is the new standard specification of the GeoJSON format. Moreover, the package takes advantage of a C++11 JSON library ([json11](https://github.com/dropbox/json11)) to do the encoding *from* and *to* geojson data objects and all functions are exported in R using the *Rcpp* and *RcppArmadillo* packages. <br>
+**geojsonR** relies mainly on [RFC 7946](https://datatracker.ietf.org/doc/pdf/rfc7946.pdf), which is the new standard specification of the GeoJSON format. Moreover, the package takes advantage of a C++11 JSON library ([json11](https://github.com/dropbox/json11)) to do the encoding *from* and *to* geojson data objects and all functions are exported in R using the *Rcpp* and *RcppArmadillo* packages. <br>
 
 
-The following lines show an [example GeoJson object](https://tools.ietf.org/pdf/rfc7946.pdf#page=5) (*"feature_collection.geojson"*),
+The following lines show an [example GeoJson object](https://datatracker.ietf.org/doc/pdf/rfc7946.pdf#page=5) (*"feature_collection.geojson"*),
 
 ```{r, eval = F}
 

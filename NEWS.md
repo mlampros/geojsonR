@@ -1,4 +1,9 @@
 
+## geojsonR 1.1.1
+
+* I modified the *json11.cpp* file by excluding the *using std::move* from the top of the file and converting all *move* to *std::move* to remove the significant warning *"warning: unqualified call to 'std::move' [-Wunqualified-std-cast-call]"*
+
+
 ## geojsonR 1.1.0
 
 * I've added the *CITATION* file in the *inst* directory listing all papers and software used in the *geojsonR* package
