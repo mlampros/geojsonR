@@ -1,4 +1,12 @@
 
+## geojsonR 1.1.2
+
+* I fixed broken url's
+* I removed the `#define NDEBUG` from the `TO_geojson.cpp` and `FROM_geojson.cpp` files
+* I added the `#include <cstdint>` to the `json11.cpp` file
+* I removed the `CXX_STD = CXX11` flag from the `Makevars` files
+
+
 ## geojsonR 1.1.1
 
 * I modified the *json11.cpp* file by excluding the *using std::move* from the top of the file and converting all *move* to *std::move* to remove the significant warning *"warning: unqualified call to 'std::move' [-Wunqualified-std-cast-call]"*

@@ -13,10 +13,10 @@ vignette: >
 
 "[GeoJSON](https://en.wikipedia.org/wiki/GeoJSON) is an open standard format designed for representing simple geographical features, along with their non-spatial attributes, based on JavaScript Object Notation. The features include points (therefore *addresses* and *locations*), line strings (therefore *streets*, *highways* and *boundaries*), polygons (*countries*, *provinces*, *tracts of land*), and multi-part collections of these types. GeoJSON features need not represent entities of the physical world only; *mobile routing* and *navigation apps*, for example, might describe their service coverage using GeoJSON. The GeoJSON format differs from other GIS standards in that it was written and is maintained not by a formal standards organization, but by an Internet working group of developers." <br>
 
-**geojsonR** relies mainly on [RFC 7946](https://datatracker.ietf.org/doc/pdf/rfc7946.pdf), which is the new standard specification of the GeoJSON format. Moreover, the package takes advantage of a C++11 JSON library ([json11](https://github.com/dropbox/json11)) to do the encoding *from* and *to* geojson data objects and all functions are exported in R using the *Rcpp* and *RcppArmadillo* packages. <br>
+**geojsonR** relies mainly on [RFC 7946](https://datatracker.ietf.org/doc/html/rfc7946), which is the new standard specification of the GeoJSON format. Moreover, the package takes advantage of a C++11 JSON library ([json11](https://github.com/dropbox/json11)) to do the encoding *from* and *to* geojson data objects and all functions are exported in R using the *Rcpp* and *RcppArmadillo* packages. <br>
 
 
-The following lines show an [example GeoJson object](https://datatracker.ietf.org/doc/pdf/rfc7946.pdf#page=5) (*"feature_collection.geojson"*),
+The following lines show an [example GeoJson object](https://datatracker.ietf.org/doc/html/rfc7946) (*"feature_collection.geojson"*),
 
 ```{r, eval = F}
 
@@ -445,7 +445,7 @@ or follow the web-links using the [shinyapps.io](https://www.shinyapps.io/) serv
 
 The latter service is limited to 25 active hours per month (for free accounts), thus if the limit is exceeded then the applications won't be available to the end users.
 
-I won't go into detail about [shiny](https://shiny.rstudio.com/) and [leaflet](https://rstudio.github.io/leaflet/), because both packages are well documented and users can find information on how to include them in their projects. On the other hand, "*Nominatim* is a tool to search OpenStreetMap (OSM) data by name and address and to generate synthetic addresses of OSM points (reverse geocoding). It can be found at *nominatim.openstreetmap.org*. Nominatim is also used as one of the sources for the search box on the OpenStreetMap home page. Several companies provide hosted instances of Nominatim that you can query via an API." More information on how to use *Nominatim* can be found at https://wiki.openstreetmap.org/wiki/Nominatim).
+I won't go into detail about [shiny](https://shiny.posit.co/) and [leaflet](https://rstudio.github.io/leaflet/), because both packages are well documented and users can find information on how to include them in their projects. On the other hand, "*Nominatim* is a tool to search OpenStreetMap (OSM) data by name and address and to generate synthetic addresses of OSM points (reverse geocoding). It can be found at *nominatim.openstreetmap.org*. Nominatim is also used as one of the sources for the search box on the OpenStreetMap home page. Several companies provide hosted instances of Nominatim that you can query via an API." More information on how to use *Nominatim* can be found at https://wiki.openstreetmap.org/wiki/Nominatim).
 
 <br>
 

@@ -20,8 +20,6 @@
 // [[Rcpp::plugins(cpp11)]]
 
 
-#define NDEBUG                              // disable assertions completely, due to '__assert_fail' errors when checking package [ add flag also in Makevars file ]
-
 #include <iostream>
 #include <sstream>
 #include <string>
